@@ -21,6 +21,7 @@ def parse_arguments():
     args_parser.add_argument(TIMEOUT_PARAM_SHORT, TIMEOUT_PARAM_LONG, type=int, default=DEFAULT_TIMEOUT, dest=TIMEOUT_PARAM, metavar='TIMEOUT', help=TIMEOUT_HELP)
     args_parser.add_argument(CONSOLE_PARAM_SHORT, CONSOLE_PARAM_LONG, action='store_true', dest=CONSOLE_PARAM, help=CONSOLE_HELP)
     args_parser.add_argument(ARP_PARAM, action='store_const', dest=ARP_PARAM_ALIAS, const='arp', help=ARP_HELP)
+    args_parser.add_argument(ARP_ENTROPY_FILE_PARAM_SHORT, ARP_ENTROPY_FILE_PARAM_LONG, dest=ARP_ENTROPY_FILE_PARAM, type=argparse.FileType('w'), default=DEFAULT_ARP_ENTROPY_FILE, metavar='ARCHIVO', help=ARP_ENTROPY_HELP)
 
     return vars(args_parser.parse_args())
 

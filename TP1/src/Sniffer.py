@@ -10,6 +10,7 @@ class Sniffer(object):
         # Parametros
         self.file = args[FILE_PARAM]
         self.entropy_file = args[ENTROPY_FILE_PARAM]
+        self.arp_entropy_file = args[ARP_ENTROPY_FILE_PARAM]
         self.timeout = args[TIMEOUT_PARAM]
         self.arp = args[ARP_PARAM_ALIAS]
         self.console = args[CONSOLE_PARAM]
@@ -28,6 +29,8 @@ class Sniffer(object):
         self.file.close()
 
         self.entropyCalculator.write_to_file(self.entropy_file)
+
+        self.entropyCalculator.arp_write_to_file(self.arp_entropy_file)
 
     def writePacketToFile(self, packet):
 
@@ -60,10 +63,9 @@ class Sniffer(object):
         self.file.write(packetInfo)
         self.index+=1
 
-	if self.arp != None:
-		self.entropyCalculator.arp_entropyUpdate(packet)
-	else:        
-		self.entropyCalculator.entropyUpdate(packet)
+	self.entropyCalculator.arp_entropyUpdate(packet)
+	
+	self.entropyCalculator.entropyUpdate(packet)
 
     def decorate(self, obj):
         return "\t'" + str(obj) + '\''

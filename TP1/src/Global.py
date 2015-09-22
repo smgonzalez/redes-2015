@@ -7,6 +7,7 @@ FAKE_IP='\txxx:xxx:xxx:xxx'
 DEFAULT_TIMEOUT=None
 DEFAULT_FILE='./out/sniff.out'
 DEFAULT_ENTROPY_FILE='./out/entropy.out'
+DEFAULT_ARP_ENTROPY_FILE='./out/arp_entropy.out'
 
 SCAPY_WHO_HAS=1
 SCAPY_IS_AT=2
@@ -31,10 +32,15 @@ FILE_PARAM_SHORT='-f'
 FILE_PARAM_LONG='--file'
 FILE_HELP='Archivo de salida para las capturas, (default: '+DEFAULT_FILE+')'
 
+ARP_ENTROPY_FILE_PARAM='arpefile'
+ARP_ENTROPY_FILE_PARAM_SHORT='-arpe'
+ARP_ENTROPY_FILE_PARAM_LONG='--arpentropy-file'
+ARP_ENTROPY_HELP='Archivo de salida para la entropia, (default:'+DEFAULT_ARP_ENTROPY_FILE+')'
+
 ENTROPY_FILE_PARAM='efile'
 ENTROPY_FILE_PARAM_SHORT='-e'
 ENTROPY_FILE_PARAM_LONG='--entropy-file'
-ENTROPY_HELP='Archivo de salida para la entropia, (default: '+DEFAULT_ENTROPY_FILE+')'
+ENTROPY_HELP='Archivo de salida para la arp entropia, (default: '+DEFAULT_ENTROPY_FILE+')'
 
 TIMEOUT_PARAM='timeout'
 TIMEOUT_PARAM_SHORT='-t'
