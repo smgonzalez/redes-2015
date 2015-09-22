@@ -1,7 +1,7 @@
 # -- coding: utf-8 --
 
 # Variables
-FILE_HEADER="Nº  |  Mac origen  |  Mac destino  |  IP origen  |  IP destino  |  Type\n"
+FILE_HEADER="Fecha y Hora  |  Mac origen  |  Mac destino  |  IP origen  |  IP destino  |  Type\n"
 FAKE_IP='\txxx:xxx:xxx:xxx'
 
 DEFAULT_TIMEOUT=None
