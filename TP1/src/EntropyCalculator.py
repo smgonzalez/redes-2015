@@ -25,10 +25,10 @@ class EntropyCalculator(object):
         if(pkt[1].name == 'ARP'):        
 
           self.total_ips += 2 
-	
+
           psrc = pkt[ARP].psrc
           pdst = pkt[ARP].pdst
-	
+
           if self.packet_ips.get(psrc) != None:
              self.packet_ips[psrc] += 1  
           else:
@@ -52,7 +52,7 @@ class EntropyCalculator(object):
             file.write(self.packet_names[type]+" I("+str(type)+") = "+str(info)+"\n")
             entropy = entropy + (prob * info)
 
-        file.write("H(S) = "+str(entropy)+"\n")	
+        file.write("H(S) = "+str(entropy)+"\n")
         file.close()
 
     def arp_write_to_file(self, file):
@@ -68,6 +68,6 @@ class EntropyCalculator(object):
             file.write("I("+str(ip)+") = "+str(info)+"\n")
             entropy = entropy + (prob * info)
 
-        file.write("H(S) = "+str(entropy)+"\n")	
+        file.write("H(S) = "+str(entropy)+"\n")
         file.close()
 

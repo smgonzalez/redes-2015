@@ -63,9 +63,9 @@ class Sniffer(object):
         self.file.write(packetInfo)
         self.index+=1
 
-	self.entropyCalculator.arp_entropyUpdate(packet)
-	
-	self.entropyCalculator.entropyUpdate(packet)
+        self.entropyCalculator.arp_entropyUpdate(packet)
+        
+        self.entropyCalculator.entropyUpdate(packet)
 
     def decorate(self, obj):
         return "\t'" + str(obj) + '\''
