@@ -1,1 +1,50 @@
-\section{Utilización de la herramienta}
+\section{Resumen de la herramienta}
+
+Para la simulación de las fuentes de información anteriormente presentadas. Desarrollamos una aplicación utilizando Scapy, la cual escucha pasivamente la red, captura los paquetes y vuelva la información pertinente en una serie de archivos. Los mismos son los siguientes:
+
+\begin{itemize}
+	\item Un archivo que indica: El origen y el destino (MAC) de la capa Ethernet, el ``type'', y las IPs origen y destino (solo cuando es pertinente)
+	\item Un archivo con la probabilidad de ocurrencia de cada ``type'', y la entropía de los ``type''
+	\item Un archivo con la probabilidad de ocurrencia de cada ``host'' (ip), y la entropía de los host (solo teniendo en cuenta paquetes ARP)
+	\item Una imagen con un grafo indicando los ``request'' (who-has) y ``replys'' (is-at) que se enviaron los ``host'' entre si (opcional).
+\end{itemize}
+
+\subsection{Ejecución}
+
+La ejecución del a herramienta debe ser realizada en un entorno Linux, y es necesario tener instalado: \textit{Python 3.0} (o superior), \textit{Scapy}, y si ademas se quiere realizar grafos, es necesario tener instalado \textit{graphviz}.
+
+Para ejecutar la herramienta, se debe abrir una consola en la carpeta ``src'' adjunta a este informe y ejecutar el comando:
+
+\begin{lstlisting}[language=bash]
+  $ sudo ./WiretappingTool.py
+\end{lstlisting}
+
+Esto comenzara a capturar, y volcara la informacion en los archivos configurados como default.
+Adicionalmente, la aplicacion cuenta con ciertos paramentos para personalizar la ejecucion de la captura. Por ejemplo:
+
+\begin{lstlisting}[language=bash]
+  $ sudo ./WiretappingTool.py -f salida.out -t 60 --console --arp
+\end{lstlisting}
+
+Esto realiza lo sigiuente:
+
+\begin{itemize}
+	\item ($-$t o $--$timeout) indica un tiempo en segundos para finalizar la captura, en esta caso 60 segundos.
+	\item ($--$arp) Captura solo paquetes ARP.
+	\item ($--$console) Ademas de volcar el resultado de la captura a un archivo, se muestran los paquetes en la consola, en tiempo real.
+	\item ($-$f) Vuelca la captura en \textit{salida.out} en lugar del archivo configurado por defecto (out/sniff.out).
+\end{itemize}
+
+Si ademas de la captura, se desea realizar un grafo con los nodos de la red, junto con los ``request'' y ``replys'' realizados por los mismos, se debe pasar el parametro ``--graph''. Ejemplo:
+
+\begin{lstlisting}[language=bash]
+  $ sudo ./WiretappingTool.py -f salida.out --console --arp --graph
+\end{lstlisting}
+
+Al terminar la ejecucion, la imagen con el grafico se abrirá al instante.
+
+Para ver con detalle cada uno de los parametros que dispone la aplicacion, se puede utilizar:
+
+\begin{lstlisting}[language=bash]
+  $ sudo ./WiretappingTool.py -h
+\end{lstlisting}
