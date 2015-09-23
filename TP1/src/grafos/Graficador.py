@@ -5,9 +5,9 @@ import os
 
 DEFAULT_DOT_FILE='graph.dot'
 
-SRC_INDEX=3
-DST_INDEX=4
-TYPE_INDEX=5
+SRC_INDEX=5
+DST_INDEX=6
+TYPE_INDEX=7
 
 DOT_FILE_BEGIN="digraph graf {\nnode [fontsize=30, labelfontsize= 25, shape=ellipse, width=3.0, height=1.5]\n"
 DOT_FILE_END="}"
