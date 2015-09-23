@@ -68,4 +68,4 @@ class Sniffer(object):
         self.entropyCalculator.entropyUpdate(packet)
 
     def decorate(self, obj):
-        return "\t'" + str(obj) + '\''
+        return "\t" + str(obj)

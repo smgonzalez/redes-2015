@@ -1,21 +1,25 @@
 #!/usr/bin/python
 
 import argparse
+import os
 
-DEFAULT_DOT_FILE='./dot/graph.dot'
+DEFAULT_DOT_FILE='graph.dot'
 
 SRC_INDEX=3
 DST_INDEX=4
 TYPE_INDEX=5
 
-DOT_FILE_BEGIN="digraph graf {\nsize = \"8,8\";\n"
+DOT_FILE_BEGIN="digraph graf {\nnode [fontsize=30, labelfontsize= 25, shape=ellipse, width=3.0, height=1.5]\n"
 DOT_FILE_END="}"
 
-DOT_WHO_HAS_VERTEX_FORMAT= "%s -> %s [label=\"%d REQ  \"];\n"
-DOT_IS_AT_VERTEX_FORMAT= "%s -> %s [style=dotted, label=\"%d REP  \"];\n"
+DOT_WHO_HAS_VERTEX_FORMAT= '"%s" -> "%s" [label="%d REQ  "];\n'
+DOT_IS_AT_VERTEX_FORMAT= '"%s" -> "%s" [style=dotted, label="%d REP  "];\n'
 
-WHO_HAS="'ARP:who-has'"
-IS_AT="'ARP:is-at'"
+WHO_HAS="ARP:who-has"
+IS_AT="ARP:is-at"
+
+DOT_COMMAND="dot -Tjpg %s -o %s" # dot_file, img_file
+VIEW_COMMAND="xdg-open %s" # img_file
 
 class Graficador(object):
     
@@ -26,27 +30,30 @@ class Graficador(object):
 
     def graficar(self):
 
+        print("Generando archivo dot: ", self.dot_file.name)
         self.parse_data_file()
         
         self.dot_file.write(DOT_FILE_BEGIN)
 
         for (src,dst), quantity in self.who_has_dict.items():
-           
             vertex = DOT_WHO_HAS_VERTEX_FORMAT % (src, dst, quantity)
-
-            self.dot_file.write(vertex.replace("'","\""))
-            print(vertex)
+            self.dot_file.write(vertex)
 
         for (src,dst), quantity in self.is_at_dict.items():
-           
             vertex = DOT_IS_AT_VERTEX_FORMAT % (src, dst, quantity)
-
-            self.dot_file.write(vertex.replace("'","\""))
-            print(vertex)
+            self.dot_file.write(vertex)
 
 
         self.dot_file.write(DOT_FILE_END)
         self.dot_file.close()
+
+        print("Archivo ", self.dot_file.name, " generado")
+        print("Graficando ....")
+        os.system(DOT_COMMAND % (self.dot_file.name, self.img.name))
+        print("Grafico generado en: ", self.img.name)
+        os.remove(self.dot_file.name)
+        print("Abriendo imagen ....")
+        os.system(VIEW_COMMAND % self.img.name)
 
 
 
@@ -62,19 +69,16 @@ class Graficador(object):
             source = packet[SRC_INDEX]
             dest = packet[DST_INDEX]
             ptype = packet[TYPE_INDEX]
-
             if ptype not in [WHO_HAS,IS_AT]:
                 continue
-           
+            
             arp_dict = self.who_has_dict if ptype==WHO_HAS else self.is_at_dict
 
             if arp_dict.get((source,dest)) != None:
                 arp_dict[(source,dest)] += 1
             else:
                 arp_dict[(source,dest)] = 1
-
-        print(self.who_has_dict)
-        print(self.is_at_dict)
+        
         self.data.close()
 
 

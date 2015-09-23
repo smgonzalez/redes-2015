@@ -15,6 +15,9 @@ SCAPY_IS_AT=2
 WHO_HAS_TEXT='ARP:who-has'
 IS_AT_TEXT='ARP:is-at'
 
+GRAPH_COMMAND="grafos/Graficador.py %s %s" #(data_file, img_file)
+DEFAULT_IMG_FILE="./graph.jpg"
+
 # Parameters
 APP_DESCRIPTION='Capturador de paquetes y calculo de entropia'
 
@@ -34,8 +37,12 @@ FILE_HELP='Archivo de salida para las capturas, (default: '+DEFAULT_FILE+')'
 
 ARP_ENTROPY_FILE_PARAM='arpefile'
 ARP_ENTROPY_FILE_PARAM_SHORT='-arpe'
-ARP_ENTROPY_FILE_PARAM_LONG='--arpentropy-file'
+ARP_ENTROPY_FILE_PARAM_LONG='--arp-entropy-file'
 ARP_ENTROPY_HELP='Archivo de salida para la entropia, (default:'+DEFAULT_ARP_ENTROPY_FILE+')'
+
+GRAPH_PARAM_ALIAS='graph'
+GRAPH_PARAM='--graph'
+GRAPH_HELP='Graficar el grafo de nodos basandose en ARP. (Requiere: graphviz)'
 
 ENTROPY_FILE_PARAM='efile'
 ENTROPY_FILE_PARAM_SHORT='-e'
