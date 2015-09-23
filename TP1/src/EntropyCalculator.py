@@ -14,11 +14,17 @@ class EntropyCalculator(object):
     def entropyUpdate(self, pkt):
 
         self.total_packets += 1 
-        if self.packet_types.get(pkt[Ether].type) != None:
-            self.packet_types[pkt[Ether].type] += 1  
+        
+        if pkt[1].name == 'LLC':        
+            key = 'LLC'
         else:
-            self.packet_types[pkt[Ether].type] = 1
-            self.packet_names[pkt[Ether].type] = pkt[1].name
+            key = pkt[Ether].type
+     
+        if self.packet_types.get(key) != None:
+            self.packet_types[key] += 1  
+        else:
+            self.packet_types[key] = 1
+            self.packet_names[key] = pkt[1].name
 
     def arp_entropyUpdate(self, pkt):
 

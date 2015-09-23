@@ -7,7 +7,7 @@ from Global import *
 from Sniffer import *
 
 def main():
-
+    
     args = parse_arguments()
 
     sniffer = Sniffer(args)

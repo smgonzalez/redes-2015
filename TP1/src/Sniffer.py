@@ -35,7 +35,7 @@ class Sniffer(object):
     def writePacketToFile(self, packet):
 
         if ARP in packet:
-            packetInfo = str(self.index)+':'
+            packetInfo =  time.strftime("%d/%m/%y - %H:%M:%S")
             packetInfo += self.decorate(packet[1].hwsrc)
             packetInfo += self.decorate(packet[1].hwdst)
             packetInfo += self.decorate(packet[1].psrc)
@@ -43,7 +43,7 @@ class Sniffer(object):
             packetInfo += self.decorate(self.arp_text[packet[1].op])
 
         else:
-            packetInfo = str(self.index)+':'
+            packetInfo = time.strftime("%d/%m/%y - %H:%M:%S")
             packetInfo += self.decorate(packet.src)
             packetInfo += self.decorate(packet.dst)
 
