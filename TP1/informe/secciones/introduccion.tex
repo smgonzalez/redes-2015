@@ -1,2 +1,30 @@
 \section{Introducci\'on}
 
+El primer paso del trabajo consiste en implementar una herramienta que, dada 
+
+\begin{center}
+	$P_{t_i;t_f}$ = $\{p_1 \dotsb p_n\}$ siendo $p_i$ el i-esimo paquete transmitido en la red entre los instantes de tiempo $[t_i, t_f]$
+\end{center}
+
+sea capas de generar las siguiente fuente de información:
+
+%Pti;tf = fp1    png siendo pi el i-esimo paquete transmitido en la red entre los instantes de tiempo [ti; tf ].
+\begin{center}
+	$S_{t_i;t_f}$ = $\{s_1 \dotsb s_n\}$ siendo $s_i$ = $p_i.type / p_i \in P$ entre los instantes de tiempo $[t_i; t_f ]$.
+\end{center}
+
+Y luego, adaptarla para poder obtener una fuente de información que nos permita encontrar nodos distinguidos en la red, solo basándonos en paquetes ARP.
+Tomemos el siguiente subconjunto de P: 
+
+\begin{center}
+	$\overline{P}_{t_i;t_f}$ = $\{\overline{p}_1 \dotsb \overline{p}_n\}$ $\forall$ $\overline{p}_i$ $\in$ P $/$ $\overline{p}_i.type = ARP$ entre los instantes de tiempo $[t_i; t_f ]$.
+\end{center}
+
+Teniendo esto, la fuente de información que proponemos es la siguiente:
+
+\begin{center}
+	$R_{t_i;t_f}$ = $\{r_{ai} \mid r_{ai} = \overline{p}_i.ip\_origen \}$ $\bigcup$ $\{r_{bi} \mid r_{bi} = \overline{p}_i.ip\_destino \}$ entre los instantes de tiempo $[t_i; t_f ]$.
+\end{center}
+
+Osea, nos quedamos con las ips origen y destino, solo de los paquetes ARP. De esta forma, podemos medir la cantidad de pedidos y respuestas que envía y recibe, y de esta forma poder saber que tan distinguido es en la red.
+

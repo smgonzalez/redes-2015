@@ -1,8 +1,15 @@
 \documentclass[10pt,a4paper]{article}
+\usepackage[paper=a4paper, left=1.5cm, right=1.5cm, bottom=2.0cm, top=1.6cm]{geometry}
 \usepackage[utf8]{inputenc} % para poder usar tildes en archivos UTF-8
 \usepackage[spanish]{babel} % para que comandos como \today den el resultado en castellano
-\usepackage{a4wide} % márgenes un poco más anchos que lo usual
 \usepackage[conEntregas]{caratula}
+\usepackage{amsmath}
+\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
+
+\usepackage{ifpdf}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{subcaption}
 
 \begin{document}
 
@@ -23,6 +30,8 @@
 \newpage
   
 \input{secciones/introduccion.tex}
+\newpage
+\input{secciones/instructivo.tex}
 \newpage
 \input{secciones/metodos.tex}
 \newpage
