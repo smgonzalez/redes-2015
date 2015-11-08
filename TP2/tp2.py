@@ -11,16 +11,17 @@ TIMEOUT = 2
 MAX_TTL = 100
 REPEAT_COUNT = 10
 
-text_file = open("Output.txt", "w")
+filename = "Output.txt"
 header = "TTL\tIP\tIntentos\tRTT Promedio\tDesvio Standard\tDelta RTT"
 
 print(header)
-print(header, file=text_file)
 
 class Route:
 
 	def __init__(self):
 		self.hops = dict()
+		self.text_file = open(filename, "w")
+		print(header, file=self.text_file)
 		
 	def trace(self, hostname):
 
@@ -32,6 +33,8 @@ class Route:
 		#Echo Reply por parte de h:
 		
 		reply = False
+		
+		last_rtt_prom = 0.0
 		
 		while((not reply) and ttl < MAX_TTL):
 		
@@ -76,28 +79,27 @@ class Route:
 				deviation = self.standardDeviation(rtts)
 				rtt_prom = rtt_sum / cant_success
 				
-				deltaRTTi = rtt_prom
-				if ttl > 1:
-					deltaRTTi -= self.hops[ttl-1].rtt_prom				
+				deltaRTTi = rtt_prom - last_rtt_prom
+				last_rtt_prom = rtt_prom
 					
 				self.hops[ttl] = Hop(ttl, ip_src, cant_success, rtt_prom, deviation, deltaRTTi)
 				
 				info_hop = "%d:\t%s\t%d\t%.2fms\t%.2fms\t%.2fms" % (ttl, ip_src, cant_success, rtt_prom, deviation, deltaRTTi)
 					
 				print(info_hop)
-				print(info_hop, file=text_file)
+				print(info_hop, file=self.text_file)
 
 			else:
 				#En otro caso, marcar como desconocido (*) el
 				#hop.
 				noResponse = str(ttl) + ":\t **** No hubo respuesta ***"
 				print(noResponse)
-				print(noResponse, file=text_file)
+				print(noResponse, file=self.text_file)
 
 			#Incrementar ttl.
 			ttl = ttl+1
 
-		text_file.close()
+		self.text_file.close()
 		
 	def standardDeviation(self, numbers):
 	
