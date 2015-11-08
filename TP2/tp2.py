@@ -9,7 +9,10 @@ ECHO_REQUEST = 11
 
 TIMEOUT = 2
 MAX_TTL = 100
-REPEAT_COUNT = 10
+
+# Intentos para el mismo TTL, de cambiar la IP en menos de MIN_ATTEMPS, se reinicia el TTL
+MAX_ATTEMPTS = 10
+MIN_ATTEMPS = 3
 
 filename = "Output.txt"
 header = "TTL\tIP\tIntentos\tRTT Promedio\tDesvio Standard\tDelta RTT"
@@ -47,7 +50,7 @@ class Route:
 			
 			rtts = []
 			attempt=1
-			while attempt <= REPEAT_COUNT:
+			while attempt <= MAX_ATTEMPTS:
 
 				rtt = int(round(time.time() * 1000))
 				answer = sr1(packet, timeout=TIMEOUT, verbose=0)
@@ -60,10 +63,18 @@ class Route:
 						reply = True
 				
 					if answer_ip == None: 
-						ip_src = answer[IP].src
+						answer_ip = answer[IP].src
 					
-					elif answer_ip != answer[IP].src: #Si cambia la IP del RTT, no se promedia y se continua con el proximo TTL
-						break  
+					elif answer_ip != answer[IP].src: # Cambio la IP
+						if attempt <= MIN_ATTEMPS: # volvemos a empezar, porque no tenemos suficientes RTTs para promediar
+							answer_ip = answer[IP].src
+							attempt = 2
+							rtt_sum = rtt
+							cant_success = 1
+							rtts = [rtt]
+							continue
+						else:	# Si tenemos por lo menos MIN_ATTEMPS, promediamos con eso y seguimos al proximo TTL
+							break
 						
 					# Si proviene del a misma IP que antes (o es el primer intento), se suma el RTT
 					rtt_sum += rtt
@@ -82,9 +93,9 @@ class Route:
 				deltaRTTi = rtt_prom - last_rtt_prom
 				last_rtt_prom = rtt_prom
 					
-				self.hops[ttl] = Hop(ttl, ip_src, cant_success, rtt_prom, deviation, deltaRTTi)
+				self.hops[ttl] = Hop(ttl, answer_ip, cant_success, rtt_prom, deviation, deltaRTTi)
 				
-				info_hop = "%d:\t%s\t%d\t%.2fms\t%.2fms\t%.2fms" % (ttl, ip_src, cant_success, rtt_prom, deviation, deltaRTTi)
+				info_hop = "%d:\t%s\t%d\t%.2fms\t%.2fms\t%.2fms" % (ttl, answer_ip, cant_success, rtt_prom, deviation, deltaRTTi)
 					
 				print(info_hop)
 				print(info_hop, file=self.text_file)
