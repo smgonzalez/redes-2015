@@ -9,10 +9,10 @@ ECHO_REQUEST = 11
 
 TIMEOUT = 2
 MAX_TTL = 100
-REPEAT_COUNT = 3
+REPEAT_COUNT = 10
 
 text_file = open("Output.txt", "w")
-header = "TTL\tIntentos\tIp\tRTT Promedio"
+header = "TTL\tIntentos\tIp\tRTT Promedio\tDesvio Standard\tDelta RTT"
 
 print(header)
 print(header, file=text_file)
@@ -42,6 +42,7 @@ class Route:
 			rtt_sum = 0.0       # Suma de los RTT para cada TTL
 			cant_success = 0    # Cantidad de paquetes enviados y recibidos exitosamente para cada TTL
 			
+			rtts = []
 			attempt=1
 			while attempt <= REPEAT_COUNT:
 
@@ -64,6 +65,7 @@ class Route:
 					# Si proviene del a misma IP que antes (o es el primer intento), se suma el RTT
 					rtt_sum += rtt
 					cant_success += 1
+					rtts.append(rtt)
 				
 				attempt += 1
 										
@@ -71,10 +73,16 @@ class Route:
 			#origen de dicho paquete.    
 			if rtt_sum > 0:
 
+				deviation = self.standardDeviation(rtts)
 				rtt_prom = rtt_sum / cant_success
-				self.hops[ttl] = (cant_success, ip_src, rtt_prom)		# MAP: TTL -> (intentos, ip que respondio, promedio de RTT)
 				
-				info_hop = "%d:\t%d\t%s\t%fms\n" % (ttl, cant_success, ip_src, rtt_prom)
+				deltaRTTi = rtt_prom
+				if ttl > 1:
+					deltaRTTi -= self.hops[ttl-1].rtt_prom				
+					
+				self.hops[ttl] = Hop(ttl, ip_src, cant_success, rtt_prom, deviation, deltaRTTi)
+				
+				info_hop = "%d:\t%s\t%d\t%.2fms\t%.2fms\t%.2fms" % (ttl, ip_src, cant_success, rtt_prom, deviation, deltaRTTi)
 					
 				print(info_hop)
 				print(info_hop, file=text_file)
@@ -90,6 +98,34 @@ class Route:
 			ttl = ttl+1
 
 		text_file.close()
+		
+	def standardDeviation(self, numbers):
+	
+		sum=0
+		for num in numbers:
+			sum += num
+			
+		average = sum / float(len(numbers))
+		variance = 0.0
+		
+		for num in numbers:
+			variance += pow(num - average, 2)
+
+		variance = variance / float(len(numbers)-1)
+		return math.sqrt(variance)
+
+
+class Hop:
+	
+	def __init__(self, ttl, ip_source, attempts, rtt_prom, deviation, deltaRTTi):
+	
+		self.ttl = ttl
+		self.ip_source = ip_source
+		self.attempts = attempts
+		self.rtt_prom = rtt_prom
+		self.deviation = deviation
+		self.deltaRTTi = deltaRTTi
+		
 		
 		
 def main(argv=sys.argv):
