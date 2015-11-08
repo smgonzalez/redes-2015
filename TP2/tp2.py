@@ -12,7 +12,7 @@ MAX_TTL = 100
 REPEAT_COUNT = 10
 
 text_file = open("Output.txt", "w")
-header = "TTL\tIntentos\tIp\tRTT Promedio\tDesvio Standard\tDelta RTT"
+header = "TTL\tIP\tIntentos\tRTT Promedio\tDesvio Standard\tDelta RTT"
 
 print(header)
 print(header, file=text_file)
