@@ -47,6 +47,7 @@ class Route:
 
 			rtt_sum = 0.0       # Suma de los RTT para cada TTL
 			cant_success = 0    # Cantidad de paquetes enviados y recibidos exitosamente para cada TTL
+			answer_ip = None
 			
 			rtts = []
 			attempt=1
@@ -55,7 +56,6 @@ class Route:
 				rtt = int(round(time.time() * 1000))
 				answer = sr1(packet, timeout=TIMEOUT, verbose=0)
 				rtt = int(round(time.time() * 1000)) - rtt
-				answer_ip = None
 
 				if answer != None:
 
