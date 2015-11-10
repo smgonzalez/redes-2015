@@ -2,7 +2,8 @@ from scapy.all import *
 import time
 import sys
 import scipy.stats as stats
-
+from grubbsCriticalValues import criticalValues
+º
 #traceroute sobre ICMP
 
 ECHO_REPLY = 0
@@ -97,7 +98,7 @@ class Route:
             #origen de dicho paquete.    
             if rtt_sum > 0:
 
-                deviation = self.standardDeviation(rtts)
+                deviation = calculateStandardDeviation(rtts)
                 rtt_prom = rtt_sum / cant_success
                 
                 deltaRTTi = rtt_prom - last_rtt_prom
@@ -121,23 +122,8 @@ class Route:
             ttl = ttl+1
 
         self.text_file.close()
-        
-    def standardDeviation(self, numbers):
-    
-        sum=0
-        for num in numbers:
-            sum += num
-            
-        average = sum / float(len(numbers))
-        variance = 0.0
-        
-        for num in numbers:
-            variance += pow(num - average, 2)
-
-        variance = variance / float(len(numbers)-1)
-        return math.sqrt(variance)
-
-
+ 
+ 
 class Hop:
     
     def __init__(self, ttl, ip_source, attempts, rtt_prom, deviation, deltaRTTi):
@@ -147,8 +133,42 @@ class Hop:
         self.attempts = attempts
         self.rtt_prom = rtt_prom
         self.deviation = deviation
-        self.deltaRTTi = deltaRTTi       
+        self.deltaRTTi = deltaRTTi
         
+
+def calculateAverage(numbers):
+
+    sum=0
+    for num in numbers:
+        sum += num
+        
+    return sum / float(len(numbers))
+    
+        
+def calculateStandardDeviation(numbers):
+
+    average = calculateAverage(numbers)
+    variance = 0.0
+    
+    for num in numbers:
+        variance += pow(num - average, 2)
+
+    variance = variance / float(len(numbers)-1)
+    return math.sqrt(variance)
+    
+
+def calculateZScore(numbers):
+
+    average = calculateAverage(numbers)
+    standarDeviation = calculateStandardDeviation(numbers)
+    
+    zscores = []
+    for num in numbers:
+        zscore = math.fabs(num - average) / standarDeviation
+        zscores.append((num, zscore))
+    
+    return zscores
+    
         
 def main(argv=sys.argv):
     route = Route()
@@ -156,11 +176,34 @@ def main(argv=sys.argv):
 
     drtts = []
 
+    # Normal Test #
     for ttl, hop in route.hops.items():
         drtts.append(hop.deltaRTTi)
-
-    normal = stats.normaltest(drtts)                
-    print("normal: ", normal)
+        
+    normal = stats.normaltest(drtts)
+    print("** NormalTest **")
+    print("k2: ", normalTest[0], " p-valor: ", normalTest[1])
+    
+    # Test de Grubbs #
+    zscores = calculateZScore(drtts)
+    
+    N = len(drtts)
+    sampleMean = calculateAverage(numbers)
+    standarDeviation = calculateStandardDeviation(numbers)
+    
+    # Estadistico
+    G = (max(drtts) - sampleMean) / standarDeviation
+    
+    criticalValue = criticalValues[N]
+    
+    print("** GrubbsTest **")
+    print("N: ", N)
+    print("G: ", G)
+    print("CriticalValue: ", criticalValue) # Puede ser None si el N no esta definido en el archivo de valores criticos
+    
+    if criticalValue != None and G > criticalValue:
+        print("El DeltaRTT ", max(drtts), " es el enlace transatlantico")    
+    
     
 if __name__ == '__main__':
     main()
