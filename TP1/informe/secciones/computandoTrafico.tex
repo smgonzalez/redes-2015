@@ -1,0 +1,55 @@
+\section{Primera Consigna: Caputando tr\'afico}\label{sec:metodos_1}
+
+\subsection{Desarrollo}
+
+\subsection{Fuentes de información}
+
+\subsubsection{Protocolos}
+
+En primer lugar, la cátedra planteo una fuente de información que nos ayude a distinguir entre los distintos protocolos que se pueden hallar en una red. La fuente de información es la siguiente:
+
+\begin{center}
+	$S_{t_i;t_f}$ = $\{s_1 \dotsb s_n\}$ siendo $s_i$ = $p_i.type / p_i \in P$ entre los instantes de tiempo $[t_i; t_f ]$.
+\end{center}
+
+y P esta definida de la siguiente manera:
+
+\begin{center}
+	$P_{t_i;t_f}$ = $\{p_1 \dotsb p_n\}$ siendo $p_i$ el i-esimo paquete transmitido en la red entre los instantes de tiempo $[t_i, t_f]$
+\end{center}
+
+Entonces, lo que se hace es, realizar una captura de la red, entre los instantes $t_i$ y $t_f$, y de esto nos quedamos únicamente con los campos \textit{type} del frame Ethernet. Así obtenemos una fuente de informacion donde cada simbolo es un protocolo utilizao en la red.
+
+\subsubsection{Nodos}
+
+Ahora, debemos idear una fuente de información, que nos permita poder distinguir los hosts involucrados en la captura de trafico, y a su ves, distinguir entre ellos, cuales son los mas concurridos y con mas apariciones en la red.\\
+
+Para esto, tomemos la fuente de información $P$ vista en el anterior punto, y tratemos de adaptarla para poder obtener una fuente de información que nos permita encontrar hosts en la red, solo basándonos en paquetes ARP.
+Tomemos el siguiente subconjunto de $P$: 
+
+\begin{center}
+	$\overline{P}_{t_i;t_f}$ = $\{p_1 \dotsb p_n\}$ $\forall$ $p_i$ $\in$ P $/$ $p_i.type = ARP$ entre los instantes de tiempo $[t_i; t_f ]$.
+\end{center}
+
+Con esta fuente de información, lo que hacemos es quedarnos únicamente con los paquetes ARP de toda la captura de trafico. En base a esto proponemos la siguiente fuente de información.
+
+\begin{center}
+	$S_1$ = $R_{t_i;t_f}$ = $\{r_{ai} \mid r_{ai} = \overline{p}_i[ARP].ip\_origen \}$ $\bigcup$ $\{r_{bi} \mid r_{bi} = \overline{p}_i[ARP].ip\_destino \}$ entre los instantes de tiempo $[t_i; t_f ]$.
+\end{center}
+
+Esto quiere decir, nos quedamos con las IPs origen y destino de la capa ARP del paquete (del cual sabemos que tiene una, porque los símbolos son tomados de $\overline{P}$). De esta forma, obtenemos una fuente de información donde cada simbolo es un hosts de la red. \\
+
+Teniendo esto, podemos calcular, tanto la entropía de ambas fuentes, así como la probabilidad y cantidad de información de cada símbolo, tanto para $S_1$ como para $S_{t_i;t_f}$. La cantidad de información de cada símbolo \textit{s}, se calcula de la siguiente forma:
+
+\begin{center}
+	$I(s)$ = $-log_2(P(s))$
+\end{center}
+
+en donde $P(s)$ es la probabilidad de ocurrencia de s, en todo el espacio muestral S, en este caso, todos los símbolos emitidos por $S_1$ y $S_{t_i;t_f}$. Luego, la entropía de la fuente es la que se obtiene mediante la siguiente formula:
+
+\begin{center}
+	$H(S)$ = $\sum_{s \in S} P(s)*I(s)$
+\end{center}
+
+
+

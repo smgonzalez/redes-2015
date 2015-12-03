@@ -1,4 +1,8 @@
-InformeTP1.aux
-InformeTP1.log
-InformeTP1.out
-InformeTP1.toc
+*/*.aux
+*/*.log
+*/*.out
+*/*.toc
+*.aux
+*.log
+*.out
+*.toc

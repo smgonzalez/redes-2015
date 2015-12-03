@@ -1,30 +1,9 @@
 \section{Introducci\'on}
 
-El primer paso del trabajo consiste en implementar una herramienta que, dada 
+El objetivo de este trabajo, es poder realizar un estudio sobre distintas redes, para poder realizar un análisis de los distintos \textbf{protocolos} que corren en la misma, asi como la posible caracterización de algunas IPs, como \textbf{nodos distinguidos}\\
 
-\begin{center}
-	$P_{t_i;t_f}$ = $\{p_1 \dotsb p_n\}$ siendo $p_i$ el i-esimo paquete transmitido en la red entre los instantes de tiempo $[t_i, t_f]$
-\end{center}
+Para realizar esto, se implemento una herramienta capas de: poder capturar el trafico de una red, ya sea Wifi o Ethernet 802.3, y quedarse solo con la información de los distintos protocolos encontrados, y los distintos hosts (IP/MAC) que intervienen.\\
 
-sea capas de generar las siguiente fuente de información:
+La herramienta también permite calcular la entropia, y la probabilidad de aparición de un nodo, en el trafico de la red en un período de tiempo determinado.\\
 
-%Pti;tf = fp1    png siendo pi el i-esimo paquete transmitido en la red entre los instantes de tiempo [ti; tf ].
-\begin{center}
-	$S_{t_i;t_f}$ = $\{s_1 \dotsb s_n\}$ siendo $s_i$ = $p_i.type / p_i \in P$ entre los instantes de tiempo $[t_i; t_f ]$.
-\end{center}
-
-Y luego, adaptarla para poder obtener una fuente de información que nos permita encontrar hosts en la red, solo basándonos en paquetes ARP.
-Tomemos el siguiente subconjunto de P: 
-
-\begin{center}
-	$\overline{P}_{t_i;t_f}$ = $\{\overline{p}_1 \dotsb \overline{p}_n\}$ $\forall$ $\overline{p}_i$ $\in$ P $/$ $\overline{p}_i.type = ARP$ entre los instantes de tiempo $[t_i; t_f ]$.
-\end{center}
-
-Teniendo esto, la fuente de información que proponemos es la siguiente:
-
-\begin{center}
-	$S_1$ = $R_{t_i;t_f}$ = $\{r_{ai} \mid r_{ai} = \overline{p}_i[ARP].ip\_origen \}$ $\bigcup$ $\{r_{bi} \mid r_{bi} = \overline{p}_i[ARP].ip\_destino \}$ entre los instantes de tiempo $[t_i; t_f ]$.
-\end{center}
-
-Osea, nos quedamos con las ips origen y destino de la capa ARP. De esta forma, obtenemos una fuente de información que nos de los hosts de la red, y de esta manera podemos medir la cantidad de pedidos y respuestas que envía y recibe. Esta fuente de información podría ser utilizada, por ejemplo, para encontrar nodos distinguidos de la red.
-
+Con esta información, el objetivo es realizar un análisis exhaustivo de las redes estudiadas.
