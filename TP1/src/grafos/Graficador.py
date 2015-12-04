@@ -3,20 +3,17 @@
 import argparse
 import os
 
-DEFAULT_DOT_FILE='graph.dot'
+DEFAULT_DOT_FILE='dot/graph.dot'
 
-SRC_INDEX=5
-DST_INDEX=6
-TYPE_INDEX=7
+SRC_INDEX=3
+DST_INDEX=4
+TYPE_INDEX=5
 
 DOT_FILE_BEGIN="digraph graf {\nnode [fontsize=30, labelfontsize= 25, shape=ellipse, width=3.0, height=1.5]\n"
 DOT_FILE_END="}"
 
 DOT_WHO_HAS_VERTEX_FORMAT= '"%s" -> "%s" [label="%d REQ  "];\n'
 DOT_IS_AT_VERTEX_FORMAT= '"%s" -> "%s" [style=dotted, label="%d REP  "];\n'
-
-WHO_HAS="ARP:who-has"
-IS_AT="ARP:is-at"
 
 DOT_COMMAND="dot -Tjpg %s -o %s" # dot_file, img_file
 VIEW_COMMAND="xdg-open %s" # img_file
@@ -36,10 +33,12 @@ class Graficador(object):
         self.dot_file.write(DOT_FILE_BEGIN)
 
         for (src,dst), quantity in self.who_has_dict.items():
+            print(src, " ", dst, " ", quantity)
             vertex = DOT_WHO_HAS_VERTEX_FORMAT % (src, dst, quantity)
             self.dot_file.write(vertex)
 
         for (src,dst), quantity in self.is_at_dict.items():
+            print(src, " ", dst, " ", quantity)
             vertex = DOT_IS_AT_VERTEX_FORMAT % (src, dst, quantity)
             self.dot_file.write(vertex)
 
@@ -65,21 +64,28 @@ class Graficador(object):
         next(self.data)
 
         for line in self.data:
-            packet = line.split()
+            packet = line.replace("\n","").split("\t")
             source = packet[SRC_INDEX]
             dest = packet[DST_INDEX]
             ptype = packet[TYPE_INDEX]
-            if ptype not in [WHO_HAS,IS_AT]:
-                continue
-            
-            arp_dict = self.who_has_dict if ptype==WHO_HAS else self.is_at_dict
 
-            if arp_dict.get((source,dest)) != None:
-                arp_dict[(source,dest)] += 1
-            else:
-                arp_dict[(source,dest)] = 1
+            print(source, " ", dest, " ", ptype)
+            if ptype=="ARP:who-has":
+                self.add_to_dict(self.who_has_dict, source, dest)
+            elif ptype=="ARP:is-at":
+                self.add_to_dict(self.is_at_dict, source, dest)
         
+
         self.data.close()
+    
+
+    def add_to_dict(self, dicc, source, dest):
+
+        if dicc.get((source,dest)) != None:
+            dicc[(source,dest)] += 1
+        else:
+            dicc[(source,dest)] = 1
+        
 
 
 if __name__ == '__main__':
