@@ -15,7 +15,7 @@ DOT_FILE_END="}"
 DOT_WHO_HAS_VERTEX_FORMAT= '"%s" -> "%s" [label="%d REQ  "];\n'
 DOT_IS_AT_VERTEX_FORMAT= '"%s" -> "%s" [style=dotted, label="%d REP  "];\n'
 
-DOT_COMMAND="dot -Tjpg %s -o %s" # dot_file, img_file
+DOT_COMMAND="dot -Tjpg -Gsize600,200\! %s -o %s" # dot_file, img_file
 VIEW_COMMAND="xdg-open %s" # img_file
 
 class Graficador(object):
