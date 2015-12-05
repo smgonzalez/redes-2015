@@ -1,6 +1,6 @@
-\section{Resumen de la herramienta}
+\subsection{Resumen de la herramienta}
 
-Para la simulación de las fuentes de información anteriormente presentadas. Desarrollamos una aplicación utilizando Scapy, la cual escucha pasivamente la red, captura los paquetes y vuelva la información pertinente en una serie de archivos. Los mismos son los siguientes:
+Para la simulación de las fuentes de información anteriormente presentadas. Desarrollamos una aplicación utilizando Scapy, la cual escucha pasivamente la red, captura los paquetes y vuelca la información pertinente en una serie de archivos. Los mismos son los siguientes:
 
 \begin{itemize}
 	\item Un archivo que indica: El origen y el destino (MAC) de la capa Ethernet, el ``type'', y las IPs origen y destino (solo cuando es pertinente)
@@ -19,14 +19,14 @@ Para ejecutar la herramienta, se debe abrir una consola en la carpeta ``src'' ad
   $ sudo ./WiretappingTool.py
 \end{lstlisting}
 
-Esto comenzara a capturar, y volcara la informacion en los archivos configurados como default.
-Adicionalmente, la aplicacion cuenta con ciertos paramentos para personalizar la ejecucion de la captura. Por ejemplo:
+Esto comenzara a capturar, y volcara la información en los archivos configurados como default.
+Adicionalmente, la aplicación cuenta con ciertos paramentos para personalizar la ejecución de la captura. Por ejemplo:
 
 \begin{lstlisting}[language=bash]
   $ sudo ./WiretappingTool.py -f salida.out -t 60 --console --arp
 \end{lstlisting}
 
-Esto realiza lo sigiuente:
+Esto realiza lo siguiente:
 
 \begin{itemize}
 	\item ($-$t o $--$timeout) indica un tiempo en segundos para finalizar la captura, en esta caso 60 segundos.
@@ -35,15 +35,7 @@ Esto realiza lo sigiuente:
 	\item ($-$f) Vuelca la captura en \textit{salida.out} en lugar del archivo configurado por defecto (out/sniff.out).
 \end{itemize}
 
-Si ademas de la captura, se desea realizar un grafo con los nodos de la red, junto con los ``request'' y ``replys'' realizados por los mismos, se debe pasar el parametro ``--graph''. Ejemplo:
-
-\begin{lstlisting}[language=bash]
-  $ sudo ./WiretappingTool.py -f salida.out --console --arp --graph
-\end{lstlisting}
-
-Al terminar la ejecucion, la imagen con el grafico se abrirá al instante.
-
-Para ver con detalle cada uno de los parametros que dispone la aplicacion, se puede utilizar:
+Si ademas de la captura, se desea realizar un grafo con los nodos de la red, junto con los ``request'' y ``replys'' realizados por los mismos, se debe pasar el parámetro ``--graph''. Si se hace esto, al terminar la ejecución, la imagen con el grafo se abrirá al instante. Para ver con detalle cada uno de los parametros que dispone la aplicacion, se puede utilizar:
 
 \begin{lstlisting}[language=bash]
   $ sudo ./WiretappingTool.py -h

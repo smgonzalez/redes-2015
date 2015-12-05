@@ -1,1 +1,39 @@
-\section{Segunda Consigna: Gr\'aficos y An\'alisis}
+\section{Segunda Consigna: Gráficos y Análisis}
+
+Para poder simular las fuentes de información antes mencionadas, lo que hicimos fue correr la herramienta implementada en diferentes redes con distintas topologias. Todas las capturas fueron realizadas en redes Wifi, ya que en redes Ethernet ``switcheadas'' no se pueden ver los mensajes ARP \textit{``is-at''} que no son hacia nuestro host, debido a que estos son unicast, y no es posible capturarlos debido a que no llegan a la interfaz de la pc que realiza la captura. 
+
+En primer lugar, queremos presentar las redes que utilizamos, y ademas mostrar el grafo que genero nuestra herramienta, con los mensajes ARP ``\textit{who-has}'' y ``\textit{is-at}''
+
+\subsection{Red Laboral}
+
+Esta red es la red del trabajo de uno de los integrantes del grupo. Dicha red cuenta con diversos routers Wifi, por lo que es difícil saber de cuantos hosts es posible capturar el trafico. Por los datos obtenidos se puede estimar que al momento de realizar la captura, se encontraban conectados alrededor de 53 hosts. A continuación se muestra el grafo resultante de la captura. \\
+
+Como se puede ver a simple vista en la figura \ref{fig:bf-graph}, hay 3 IPs muy concurridas: 192.168.28.131 (A), 192.168.28.143 (B), y 192.168.29.254 (C). Debido a que la IP (C) termina con el numero 254, y que ademas es el nodo mas concurrido de la red (al momento de esta captura), podemos intuir que esta IP es el router al que esta conectada la PC que capturo el trafico. Luego, esta captura se realizó desde una maquina virtual corriendo Linux, hosteada en una pc con Windows 7, y las IPs (B) y (A) son el host real y la Virtual respectivamente.
+
+
+\subsection{Red Starbucks - FibertelZone}
+
+La siguiente captura se realizo también desde una maquina virtual corriendo Linux, desde una notebook corriendo Windows 8.1, en una red (Wifi) de Starbucks. De todas maneras, al momento de conectarse, la red Wifi pertenecía a la red de FibertelZone, sin contraseña, por lo que es muy probable que los hosts no se encuentren solo en el establecimiento, sino también en los alrededores. \\
+
+Hay varias cosas a destacar en el grafo. Primero hay 2 redes visibles, una con IPs privadas (10.0.0.0) (A), y otra con IPs publicas de la red 169.254... (B) (no es posible determinar la mascara debido a que no hay suficientes IPs). Otra cosa a destacar, que es bastante interesante, es que hay paquetes ARP ``who-has'' desde IPs de la red (A) hacia una IP que podría legar a ser la IP broadcast de la red (B). Si esto fuera así, habría hosts preguntando por la dirección MAC de una IP broadcast, lo cual es bastante absurdo. Ademas el hecho de que esta IP no responda los ``who-has'', aumenta la posibilidad de que sea una IP broadcast. De todas maneras, al no saber la mascara de esta red, esa IP podría no ser broadcast. Por ejemplo si la mascara fuera 255.254.0.0, entonces la IP 169.254.255.255 seria una IP utilizable por algún host o un router, y no una IP broadcast.\\
+
+Luego, tambien se puede visualizar paquetes ``who-has'' desde la ip 0.0.0.0, en ambas redes. Estos paquetes ARP, luego de investigar un poco, son denominadas Gratuitous ARP\footnote{\url{https://wiki.wireshark.org/Gratuitous_ARP}}, las cuales sirven (entre otras cosas) para que un host verifique que no haya otro dispositivo usando su propia IP.
+
+
+\begin{figure}
+  \begin{center}
+    %\captionbox[Text]{Zehcninasddwqe \label{fig:dummy}\subcaption*{Source: www...}}{%
+      \includegraphics[width=270mm,angle=270]{graficos/grafo-baufest.jpg}
+    %}
+	\caption{Red Laboral}
+    \label{fig:bf-graph}  
+  \end{center}
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=270mm,angle=270]{graficos/grafo-starbucks.jpg}
+	\caption{Red Starbucks - FibertelZone}
+    \label{fig:satrbucks-graph}  
+  \end{center}
+\end{figure}
