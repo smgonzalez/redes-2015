@@ -1,0 +1,150 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	3
+<table>
+Table2	32	2	05/12/15 17:36
+geometry	906	-40	235	158	
+header	102514186[X]	4924272673836755[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	1;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments	10.251.4.186	4.924272673836755	
+WindowLabel	/home/sergio/Redes/TP1/redes-2015/TP1/informe/data/starbucks-entropy-nodos.txt	2
+<data>
+</data>
+</table>
+<table>
+Table3	52	2	05/12/15 18:15
+geometry	930	267	445	220	
+header	1921682883[X]	1088264304936184[Y]
+ColWidth	93	100	
+<com>
+</com>
+ColType	1;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments	192.168.28.83	10.88264304936184	
+WindowLabel	/home/sergio/Redes/TP1/redes-2015/TP1/informe/data/bf-entropy-nodos.txt	2
+<data>
+0	192.168.29.254	1.121091816917
+1	192.168.28.139	2.22443156661
+2	192.168.28.76	4.267933205247
+3	192.168.28.50	4.390789953032
+4	192.168.28.55	4.838248930003
+5	192.168.28.72	5.423211430725
+6	192.168.28.125	5.634715535918
+7	192.168.28.143	5.673189683733
+8	192.168.28.93	6.127755547198
+9	192.168.28.46	6.560714954474
+10	192.168.28.15	6.634715535918
+11	192.168.28.74	6.71271804792
+12	192.168.28.131	6.795180208112
+13	192.168.28.73	7.182203331221
+14	192.168.28.114	7.297680548641
+15	192.168.28.4	7.297680548641
+16	192.168.28.5	7.560714954474
+17	192.168.28.133	8.075288127304
+18	169.254.255.255	8.075288127304
+19	192.168.28.35	8.075288127304
+20	192.168.28.58	8.297680548641
+21	192.168.28.67	8.297680548641
+22	192.168.28.23	8.297680548641
+23	192.168.28.33	8.297680548641
+24	192.168.28.66	8.882643049362
+25	192.168.28.1	8.882643049362
+26	192.168.28.6	8.882643049362
+27	192.168.28.10	8.882643049362
+28	192.168.28.120	8.882643049362
+29	192.168.28.112	9.882643049362
+30	192.168.28.132	9.882643049362
+31	192.168.28.28	9.882643049362
+32	192.168.28.9	9.882643049362
+33	192.168.28.11	9.882643049362
+34	192.168.28.110	9.882643049362
+35	192.168.28.123	10.88264304936
+36	192.168.28.107	10.88264304936
+37	192.168.28.87	10.88264304936
+38	192.168.28.14	10.88264304936
+39	192.168.28.20	10.88264304936
+40	192.168.28.80	10.88264304936
+41	192.168.28.48	10.88264304936
+42	192.168.28.69	10.88264304936
+43	192.168.28.68	10.88264304936
+44	0.0.0.0	10.88264304936
+45	192.168.28.64	10.88264304936
+46	192.168.28.84	10.88264304936
+47	192.168.28.82	10.88264304936
+48	192.168.28.31	10.88264304936
+49	192.168.28.39	10.88264304936
+50	192.168.28.56	10.88264304936
+51	192.168.28.135	10.88264304936
+</data>
+</table>
+<multiLayer>
+Graph2	1	1	05/12/15 18:17
+geometry	86	16	819	484	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	832	421
+<PageGeometry>0.00616523	0.0114679	1.02589	0.965596</PageGeometry>
+PlotTitle	Cantidad de información por IP	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Dirección IP	Información (bits)		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Cantarell	13	75	0	0	0
+ScaleFont0	Cantarell	11	75	0	0	0
+ScaleFont1	Cantarell	11	75	0	0	0
+ScaleFont2	Cantarell	11	75	0	0	0
+ScaleFont3	Cantarell	11	75	0	0	0
+AxisFont0	Cantarell	11	50	0	0	0
+AxisFont1	Cantarell	11	50	0	0	0
+AxisFont2	Cantarell	8	75	0	0	0
+AxisFont3	Cantarell	11	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#313739	#313739	#313739	#313739
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Table3_1921682883	Table3_1088264304936184	3	1	#000000	0	1	7	0	#000000	#000000	1	#0000ff	0	40	0	2	0	0	51	1
+scale	0	0	12	0	7	5	0	0
+scale	1	0	12	0	7	5	0	0
+scale	2	0	60	1	61	1	0	0
+scale	3	0	60	1	61	1	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	1;Table3_1921682883	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	60	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>
