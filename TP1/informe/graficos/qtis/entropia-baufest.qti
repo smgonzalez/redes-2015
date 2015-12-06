@@ -1,34 +1,6 @@
 QtiPlot 0.9.8 project file
 <scripting-lang>	muParser
 <windows>	2
-<table>
-Table1	13	3	05/12/15 22:53
-geometry	733	-59	445	220	
-header	Minuto[X]	EntropiaIP[Y]	EntropiaProto[Y]
-ColWidth	100	100	100	
-<com>
-</com>
-ColType	0;0/13	0;0/13	0;0/13
-ReadOnlyColumn	0	0	0
-HiddenColumn	0	0	0
-Comments	Minuto	Entropia IP	Entropia Proto	
-WindowLabel	/home/sergio/Redes/TP1/redes-2015/TP1/informe/data/tiempo/starbucks-entropy-time.txt	2
-<data>
-0	1	2.81	1.41
-1	2	3.03	1.32
-2	3	3.37	1.23
-3	4	3.63	1.27
-4	5	3.83	1.26
-5	6	3.98	1.27
-6	7	4.2	1.27
-7	8	4.31	1.27
-8	9	4.28	1.27
-9	10	4.28	1.27
-10	11	4.28	1.27
-11	12	4.31	1.23
-12	13	4.3	1.22
-</data>
-</table>
 <multiLayer>
 Graph1	1	1	05/12/15 22:35
 geometry	85	-37	648	531	active
@@ -40,9 +12,9 @@ Alignement	0	0
 <AlignPolicy>0</AlignPolicy>
 <CommonAxes>0</CommonAxes>
 <graph>
-ggeometry	5	5	630	467
-<PageGeometry>0.0078125	0.010352	0.984375	0.966874</PageGeometry>
-PlotTitle	Entropía en función del tiempo <br>parala red Starbucks	#000000	4228
+ggeometry	5	3	630	469
+<PageGeometry>0.0078125	0.00621118	0.984375	0.971014</PageGeometry>
+PlotTitle	Entropía en función del tiempo <br>parala red laboral	#000000	4228
 <Antialiasing>0</Antialiasing>
 <Autoscaling>1</Autoscaling>
 <ScaleFonts>1</ScaleFonts>
@@ -71,12 +43,12 @@ AxesColors	#000000	#000000	#000000	#000000
 AxesNumberColors	#313739	#313739	#313739	#313739
 AxesBaseline	0	0	0	0	
 CanvasBackground	#ffffff	0
-curve	Table1_Minuto	Table1_EntropiaProto	2	1	#000000	0	1	7	1	#000000	#000000	0	#000000	14	1	2	0	0	12	1
-curve	Table1_Minuto	Table1_EntropiaIP	2	1	#ff0000	0	1	7	2	#ff0000	#ff0000	0	#000000	14	1	2	0	0	12	1
-scale	0	1	4.5	0	8	5	0	0
-scale	1	1	4.5	0	8	5	0	0
-scale	2	0	14	1	15	5	0	0
-scale	3	0	14	1	15	5	0	0
+curve	Table2_Minuto	Table2_EntropiaProto	2	1	#000000	0	1	7	1	#000000	#000000	0	#000000	14	1	2	0	0	12	1
+curve	Table2_Minuto	Table2_EntropiaIP	2	1	#ff0000	0	1	7	2	#ff0000	#ff0000	0	#000000	14	1	2	0	0	12	1
+scale	0	0	3	0	7	5	0	0
+scale	1	0	3	0	7	5	0	0
+scale	2	0	14	0	15	5	0	0
+scale	3	0	14	0	15	5	0	0
 LabelsFormat	0	6	0	6	0	6	0	6
 AxisType	0	0	0	0	
 MajorTicks	1	1	1	1
@@ -95,16 +67,16 @@ EnabledTickLabels	1	1	1	1
 <Color>#000000</Color>
 <FrameWidth>1</FrameWidth>
 <LineStyle>0</LineStyle>
-<x>7.0555555555556</x>
-<y>3.0548387096774</y>
-<right>3.08571428571429</right>
-<bottom>4.09018987341772</bottom>
+<x>7.1377952755906</x>
+<y>1.9904761904762</y>
+<right>13.6141732283465</right>
+<bottom>1.44761904761905</bottom>
 <attachTo>1</attachTo>
 <onTop>1</onTop>
 <visible>1</visible>
 <Text>
-\l(2) Entropía de protocolos
-\l(1) Entropía de nodos
+\l(2) Entropía de nodos
+\l(1) Entropía de protocolos
 </Text>
 <Font>Cantarell	12	50	0	0	0</Font>
 <TextColor>#000000</TextColor>
@@ -118,4 +90,32 @@ EnabledTickLabels	1	1	1	1
 <LinkXAxes>0</LinkXAxes>
 <ScaleLayers>1</ScaleLayers>
 </multiLayer>
+<table>
+Table2	13	3	06/12/15 13:14
+geometry	733	161	445	220	
+header	Minuto[X]	EntropiaIP[Y]	EntropiaProto[Y]
+ColWidth	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0
+HiddenColumn	0	0	0
+Comments	Minuto	Entropia IP	Entropia Proto	
+WindowLabel	/home/sergio/Redes/TP1/redes-2015/TP1/informe/data/tiempo/bf-entropy-time.txt	2
+<data>
+0	1	2.19	0.97
+1	2	2.5	0.46
+2	3	2.61	0.56
+3	4	2.7	0.63
+4	5	2.71	0.66
+5	6	2.68	0.69
+6	7	2.71	0.59
+7	8	2.81	0.61
+8	9	2.9	0.63
+9	10	2.87	0.63
+10	11	2.87	0.63
+11	12	2.89	0.6
+12	13	2.89	0.63
+</data>
+</table>
 <open>1</open>
