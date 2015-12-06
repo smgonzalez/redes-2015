@@ -10,7 +10,7 @@ Esta red es la red del trabajo de uno de los integrantes del grupo. Dicha red cu
 
 Como se puede ver a simple vista en la figura \ref{fig:bf-graph}, hay 3 IPs muy concurridas: 192.168.28.131 (A), 192.168.28.143 (B), y 192.168.29.254 (C). Debido a que la IP (C) termina con el numero 254, y que ademas es el nodo mas concurrido de la red (al momento de esta captura), podemos intuir que esta IP es el router al que esta conectada la PC que capturo el trafico. Luego, esta captura se realizó desde una maquina virtual corriendo Linux, hosteada en una pc con Windows 7, y las IPs (B) y (A) son el host real y la Virtual respectivamente.
 
-
+\FloatBarrier
 \subsection{Red Starbucks - FibertelZone}
 
 La siguiente captura se realizo también desde una maquina virtual corriendo Linux, desde una notebook corriendo Windows 8.1, en una red (Wifi) de Starbucks. De todas maneras, al momento de conectarse, la red Wifi pertenecía a la red de FibertelZone, sin contraseña, por lo que es muy probable que los hosts no se encuentren solo en el establecimiento, sino también en los alrededores. \\
@@ -20,7 +20,8 @@ Hay varias cosas a destacar en el grafo. Primero hay 2 redes visibles, una con I
 Luego, tambien se puede visualizar paquetes ``who-has'' desde la ip 0.0.0.0, en ambas redes. Estos paquetes ARP, luego de investigar un poco, son denominadas Gratuitous ARP\footnote{\url{https://wiki.wireshark.org/Gratuitous_ARP}}, las cuales sirven (entre otras cosas) para que un host verifique que no haya otro dispositivo usando su propia IP.
 
 
-\begin{figure}
+
+\begin{figure}[h!]
   \begin{center}
     %\captionbox[Text]{Zehcninasddwqe \label{fig:dummy}\subcaption*{Source: www...}}{%
       \includegraphics[width=270mm,angle=270]{graficos/grafo-baufest.jpg}
@@ -30,10 +31,105 @@ Luego, tambien se puede visualizar paquetes ``who-has'' desde la ip 0.0.0.0, en 
   \end{center}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h!]
   \begin{center}
     \includegraphics[width=270mm,angle=270]{graficos/grafo-starbucks.jpg}
 	\caption{Red Starbucks - FibertelZone}
     \label{fig:satrbucks-graph}  
   \end{center}
 \end{figure}
+
+\FloatBarrier
+\subsection{Cantidad de información por nodo}
+
+% explicacion
+
+\FloatBarrier
+\subsubsection{Red Laboral}
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[scale=0.9]{graficos/informacion-baufest.pdf}
+	\caption{}
+    \label{fig:info-baufest}  
+  \end{center}
+\end{figure}
+
+% explicacion
+
+\FloatBarrier
+\subsubsection{Red Starbucks}
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics{graficos/informacion-starbucks.pdf}
+	\caption{}
+    \label{fig:info-starbucks}  
+  \end{center}
+\end{figure}
+
+% explicacion
+
+\FloatBarrier
+\subsection{Paquetes capturados de cada protocolo}
+
+% explicacion
+
+\FloatBarrier
+\subsubsection{Red Laboral}
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics{graficos/protocolos-baufest.pdf}
+	\caption{}
+    \label{fig:proto-baufest}  
+  \end{center}
+\end{figure}
+
+% explicacion
+
+\FloatBarrier
+\subsubsection{Red Starbucks}
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics{graficos/protocolos-starbucks.pdf}
+	\caption{}
+    \label{fig:proto-starbucks}  
+  \end{center}
+\end{figure}
+
+% explicacion
+
+\FloatBarrier
+\subsection{Variación de la etropía a lo largo del tiempo}
+
+% explicacion
+
+\FloatBarrier
+\subsubsection{Red Laboral}
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics{graficos/entropia-tiempo-bf.pdf}
+	\caption{}
+    \label{fig:proto-baufest}  
+  \end{center}
+\end{figure}
+
+% explicacion
+
+\FloatBarrier
+\subsubsection{Red Starbucks}
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics{graficos/entropia-tiempo-starbucks.pdf}
+	\caption{}
+    \label{fig:proto-starbucks}  
+  \end{center}
+\end{figure}
+
+% explicacion
+
+
