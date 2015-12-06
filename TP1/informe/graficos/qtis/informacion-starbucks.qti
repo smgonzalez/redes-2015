@@ -108,6 +108,31 @@ LabelsSuffix
 TickLabelsSpace	4	4	4	4
 ShowTicksPolicy	0	0	-1	154533888
 EnabledTickLabels	1	1	1	1
+<line>	0.0573770491803279	4.28629032258065	34.2540983606557	4.28629032258065	2.5	#ff0000	SolidLine	0	0	4	45	1	1</line>
+<line>	2.75409836065574	6.1491935483871	2.0655737704918	4.48387096774194	1	#000000	SolidLine	1	0	4	45	1	1</line>
+<Legend>
+<Frame>0</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>2</LineStyle>
+<x>0.86065573770492</x>
+<y>6.9677419354839</y>
+<right>5.16393442622951</right>
+<bottom>6.06451612903226</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+Entropía
+</Text>
+<Font>Cantarell	11	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>0</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
 </graph>
 <LinkXAxes>0</LinkXAxes>
 <ScaleLayers>1</ScaleLayers>
