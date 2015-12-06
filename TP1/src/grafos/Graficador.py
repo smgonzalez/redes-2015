@@ -3,7 +3,7 @@
 import argparse
 import os
 
-DEFAULT_DOT_FILE='dot/graph.dot'
+DEFAULT_DOT_FILE='graph.dot'
 
 SRC_INDEX=3
 DST_INDEX=4
