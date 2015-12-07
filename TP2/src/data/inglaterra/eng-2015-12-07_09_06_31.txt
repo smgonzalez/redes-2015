@@ -1,0 +1,29 @@
+WARNING: No route found for IPv6 destination :: (no default route?). This affects only IPv6
+/usr/lib/python3.5/site-packages/scipy/stats/stats.py:1285: UserWarning: kurtosistest only valid for n>=20 ... continuing anyway, n=17
+  "anyway, n=%i" % int(n))
+TTL	IP	Intentos	RTT Promedio	Desvio Standard	Delta RTT
+1:	10.0.0.1	8	58.38ms	14.99ms	58.38ms
+2:	10.24.128.1	10	60.80ms	5.51ms	2.42ms
+3:	181.47.254.85	10	62.90ms	5.92ms	2.10ms
+4:	208.178.195.214	10	63.90ms	5.02ms	1.00ms
+5:	208.178.195.213	10	61.20ms	3.99ms	-2.70ms
+6:	67.17.75.66	10	190.80ms	7.66ms	129.60ms
+7:	4.68.111.121	10	187.10ms	3.07ms	-3.70ms
+8:	 **** No hubo respuesta ***
+9:	212.187.139.166	10	274.40ms	8.21ms	87.30ms
+10:	146.97.33.2	10	283.50ms	4.17ms	9.10ms
+11:	146.97.37.194	10	281.50ms	5.99ms	-2.00ms
+12:	193.63.108.94	10	281.10ms	14.84ms	-0.40ms
+13:	193.63.108.98	10	274.80ms	6.05ms	-6.30ms
+14:	193.63.109.42	10	281.10ms	4.15ms	6.30ms
+15:	192.76.21.21	10	277.20ms	4.49ms	-3.90ms
+16:	192.76.22.200	10	284.80ms	6.16ms	7.60ms
+17:	192.76.32.62	10	284.10ms	6.06ms	-0.70ms
+18:	129.67.242.155	10	284.80ms	6.41ms	0.70ms
+** NormalTest **
+k2:  19.1350889497  p-valor:  6.99629686725e-05
+** GrubbsTest **
+N:  17
+G:  2.955467287087343
+CriticalValue:  2.62
+El DeltaRTT  129.60000000000002  es el enlace transatlantico

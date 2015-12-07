@@ -1,0 +1,39 @@
+\section{Primera Consigna: Caracterizando rutas}
+
+\subsection{Implementacion de Traceroute}
+
+Para el desarrollo de los próximos análsis, se implemento una herramienta \textit{traceroute} sobre Scapy en Python 3. La idea consiste en lo siguiente: Enviar iterativamente paquetes ICMP \textit{echo-request}, empezando con un TTL de 1 y incrementándolo hasta que nos llegue un paquete de tipo \textit{echo-reply}. Por cada paquete enviado, nos guardamos la IP del host originario del paquete, y de esta manera podemos construir la ruta que lleva al mismo. \\
+
+Sin embargo, hay cosas a tener en cuenta para poder realizar esta técnica. Primero, es posible que por el trafico de la red en el momento de hacer la captura, o por otros motivos que están fuera de nuestro control, el paquete pueda cambiar de ruta en los distintos instantes del envio de los paquetes ICMP. Otra cosa a tener en cuenta, es que si nosotros queremos hacer un estudio sobre el RTT de cada enlace ($\Delta$RTT), no nos sirve el RTT medido para 1 solo intento, ya que esto pudo también haber sido influenciado por el trafico momentáneo de la red.\\
+
+Para intentar aliviaran esto, lo que hacemos es, no enviar solo 1 paquete por cada TTL, sino que enviamos varios. Cuantos?, los necesarios para poder realizar un promedio lo mas confiable posible del $\Delta$RTT. Lo que hacemos es, establecer una cota inferior y una cota superior a la cantidad de paquetes a enviar de un mismo TTL:
+
+\begin{itemize}
+	\item \textbf{MAX\_ATTEMPTS}: Cantidad máxima de paquetes \textbf{exitosos} a enviar de un mismo TTL. Esto quiere decir que, si mandamos MAX\_ATTEMPTS paquetes, y siempre nos llega una respuesta del mismo nodo, entonces promediamos el RRT, anotamos esta IP, y pasamos al próximo TTL.
+	\item \textbf{MIN\_ATTEMPTS}: Cantidad mínima de paquetes provenientes del mismo nodo que debemos recibir para pasar al próximo TTL. Esto quiere decir, que si nosotros enviamos MIN\_ATTEMPTS paquetes, y todos vinieron del mismo nodo, y en MIN\_ATTEMPTS + 1, nos viene de un nodo diferente a los anteriores, de todas maneras promediamos los RTT, y avanzamos de TTL. En caso de que la IP cambie antes de llegar a los MIN\_ATTEMPTS, se descarta la información recopilada para este TTL y se vuelve a comenzar.
+\end{itemize}
+
+Cabe aclarar que este método igual tiene una falla, y es que si al momento de cambiar la IP, nosotros igual proseguimos al próximo TTL, o mismo cuando no llegamos a los MIN\_ATTEMPTS, y debemos reiniciar el TTL, va a haber un $\Delta$RTT que quizá no sea el de 1 enlace físico, ya que la ruta cambio. Por eso es que junto con la información recopilada, nos quedamos también con los intentos que se realizaron para cada salto, así podemos identificar cuando pase esto. Como el objetivo del TP en si es estudiar enlaces submarinos, no es tan importante que la ruta cambie en un momento determinado, siempre y cuando esto no suceda en los extremos del enlace submarino.
+
+\subsection{Identificando enlaces Submarinos}
+
+Para poder identificar enlaces submarinos, nos basamos en un teste denominado ``Test de Grubbs'', el cual sirve para detectar outliers en una muestra aleatoria. En nuestro caso, la muestra aleatoria seran los $\Delta$RTT obtenidos en todo el traceroute, y el outlier que queremos encontrar, sera justamente el del enlace submarino, ya que estimamos que este enlace debe tener un RTT mucho mayor a cualquier enlace que se encuentre en tierra.\\ 
+
+Para realizar el test de Grubbs, es necesario que la muestra aleatoria sea de distribucion normal, pero de todas maneras, la cátedra indico que igual usemos el test si la distribucion de los $\Delta$RTT no nos queda normal. Ahora para verificar si la distribución de nuestras muestras es normal, utilizaremos el modulo Scipy de Python, el cual permite hacer análisis estadísticos. El test de Grubbs consiste en lo siguiente, dada una muestra \textit{X} de tamaño \textit{n}:
+
+\begin{enumerate}
+	\item Se calcula el promedio muestral de \textit{X}: $\mu$
+	\item Se calcula la desviacion standard de \textit{X}: $\sigma$
+	\item Se calcula el estadistico del test: $G = (max(X) - \mu) / \sigma$
+	\item Se obtiene el valor critico del test: \textit{C} (Este valor esta tabulado para cada \textit{n})
+	\item Si el valor de \textit{G} es mayor a \textit{C}, entonces \textit{max(X)} es un outlier de \textit{X}
+\end{enumerate}
+
+
+
+
+
+
+
+
+

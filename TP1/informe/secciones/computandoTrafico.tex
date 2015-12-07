@@ -18,7 +18,7 @@ y P esta definida de la siguiente manera:
 	$P_{t_i;t_f}$ = $\{p_1 \dotsb p_n\}$ siendo $p_i$ el i-esimo paquete transmitido en la red entre los instantes de tiempo $[t_i, t_f]$
 \end{center}
 
-Entonces, lo que se hace es, realizar una captura de la red, entre los instantes $t_i$ y $t_f$, y de esto nos quedamos únicamente con los campos \textit{type} del frame Ethernet. Así obtenemos una fuente de informacion donde cada simbolo es un protocolo utilizao en la red.
+Entonces, lo que se hace es, realizar una captura de la red, entre los instantes $t_i$ y $t_f$, y de esto nos quedamos únicamente con los campos \textit{type} del frame Ethernet. Así obtenemos una fuente de información donde cada símbolo es un protocolo utilizado en la red.
 
 \subsubsection{Nodos}
 
@@ -37,7 +37,7 @@ Con esta fuente de información, lo que hacemos es quedarnos únicamente con los
 	$S_1$ = $R_{t_i;t_f}$ = $\{r_{ai} \mid r_{ai} = \overline{p}_i[ARP].ip\_origen \}$ $\bigcup$ $\{r_{bi} \mid r_{bi} = \overline{p}_i[ARP].ip\_destino \}$ entre los instantes de tiempo $[t_i; t_f ]$.
 \end{center}
 
-Esto quiere decir, nos quedamos con las IPs origen y destino de la capa ARP del paquete (del cual sabemos que tiene una, porque los símbolos son tomados de $\overline{P}$). De esta forma, obtenemos una fuente de información donde cada simbolo es un hosts de la red. \\
+Esto quiere decir, nos quedamos con las IPs origen y destino de la capa ARP del paquete (del cual sabemos que tiene una, porque los símbolos son tomados de $\overline{P}$). De esta forma, obtenemos una fuente de información donde cada símbolo es un hosts de la red. \\
 
 Teniendo esto, podemos calcular, tanto la entropía de ambas fuentes, así como la probabilidad y cantidad de información de cada símbolo, tanto para $S_1$ como para $S_{t_i;t_f}$. La cantidad de información de cada símbolo \textit{s}, se calcula de la siguiente forma:
 

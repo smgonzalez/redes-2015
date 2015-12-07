@@ -8,7 +8,7 @@ En primer lugar, queremos presentar las redes que utilizamos, y ademas mostrar e
 
 Esta red es la red del trabajo de uno de los integrantes del grupo. Dicha red cuenta con diversos routers Wifi, por lo que es difícil saber de cuantos hosts es posible capturar el trafico. Por los datos obtenidos se puede estimar que al momento de realizar la captura, se encontraban conectados alrededor de 53 hosts. A continuación se muestra el grafo resultante de la captura. \\
 
-Como se puede ver a simple vista en la figura \ref{fig:bf-graph}, hay 3 IPs muy concurridas: 192.168.28.131 (A), 192.168.28.143 (B), y 192.168.29.254 (C). Debido a que la IP (C) termina con el numero 254, y que ademas es el nodo mas concurrido de la red (al momento de esta captura), podemos intuir que esta IP es el router al que esta conectada la PC que capturo el trafico. Luego, esta captura se realizó desde una maquina virtual corriendo Linux, hosteada en una pc con Windows 7, y las IPs (B) y (A) son el host real y la Virtual respectivamente.
+Como se puede ver a simple vista en la figura \ref{fig:bf-graph}, hay 3 IPs muy concurridas: 192.168.28.139 (A), 192.168.28.143 (B), y 192.168.29.254 (C). Debido a que la IP (C) termina con el numero 254, y que ademas es el nodo mas concurrido de la red (al momento de esta captura), podemos intuir que esta IP es el router al que esta conectada la PC que capturo el trafico. Luego, esta captura se realizó desde una maquina virtual corriendo Linux, hosteada en una pc con Windows 7, y las IPs (B) y (A) son el host real y la Virtual respectivamente.
 
 \FloatBarrier
 \subsection{Red Starbucks - FibertelZone}
@@ -17,7 +17,7 @@ La siguiente captura se realizo también desde una maquina virtual corriendo Lin
 
 Hay varias cosas a destacar en el grafo. Primero hay 2 redes visibles, una con IPs privadas (10.0.0.0) (A), y otra con IPs publicas de la red 169.254... (B) (no es posible determinar la mascara debido a que no hay suficientes IPs). Otra cosa a destacar, que es bastante interesante, es que hay paquetes ARP ``who-has'' desde IPs de la red (A) hacia una IP que podría legar a ser la IP broadcast de la red (B). Si esto fuera así, habría hosts preguntando por la dirección MAC de una IP broadcast, lo cual es bastante absurdo. Ademas el hecho de que esta IP no responda los ``who-has'', aumenta la posibilidad de que sea una IP broadcast. De todas maneras, al no saber la mascara de esta red, esa IP podría no ser broadcast. Por ejemplo si la mascara fuera 255.254.0.0, entonces la IP 169.254.255.255 seria una IP utilizable por algún host o un router, y no una IP broadcast.\\
 
-Luego, tambien se puede visualizar paquetes ``who-has'' desde la ip 0.0.0.0, en ambas redes. Estos paquetes ARP, luego de investigar un poco, son denominadas Gratuitous ARP\footnote{\url{https://wiki.wireshark.org/Gratuitous_ARP}}, las cuales sirven (entre otras cosas) para que un host verifique que no haya otro dispositivo usando su propia IP.
+Luego, también se puede visualizar paquetes ``who-has'' desde la ip 0.0.0.0, en ambas redes. Estos paquetes ARP, luego de investigar un poco, son denominadas Gratuitous ARP\footnote{\url{https://wiki.wireshark.org/Gratuitous_ARP}}, las cuales sirven (entre otras cosas) para que un host verifique que no haya otro dispositivo usando su propia IP.
 
 
 
@@ -42,10 +42,14 @@ Luego, tambien se puede visualizar paquetes ``who-has'' desde la ip 0.0.0.0, en 
 \FloatBarrier
 \subsection{Cantidad de información por nodo}
 
-% explicacion
+El primer análisis que queremos desarrollar, es sobre la cantidad de información que provee cada nodo de la red. Para esto vamos a utilizar la fuente de información de nodos ($S_1$) y vamos a realizar un histograma mostrando la cantidad de información de cada IP. \\
+
+Para poder identificar si un host nos provee ``mucha'' o ``poca'' información, necesitamos mostrar también la entropía de la fuente. Esto lo vamos a indicar con una linea horizontal con el valor de la misma. De esta manera, lo esperable sería que los hosts a los que se hacen muchos requests ARP, no sean nodos que en si provean demasiada información, ya que es algo habitual que estos se demanden.
 
 \FloatBarrier
 \subsubsection{Red Laboral}
+
+Esta es la red en la que se observó una mayor cantidad de hosts, y como se puede ver en la figura \ref{fig:info-baufest}, hay 2 nodos distinguidos en la red, ya que estos son los que mas se observaron en el trafico, y por eso es que su nivel de información es bajo.
 
 \begin{figure}[h!]
   \begin{center}
@@ -55,10 +59,12 @@ Luego, tambien se puede visualizar paquetes ``who-has'' desde la ip 0.0.0.0, en 
   \end{center}
 \end{figure}
 
-% explicacion
+Según vimos en la sección anterior, la IP 192.168.29.254 es la IP del router al cual esta conectada la PC host de la virtual que realizo la captura, y la IP 192.168.28.139 es efectivamente esta virtual. Sabiendo esto, podemos pensar que como en realidad ambas IPs son de total conocimiento por el host que capturo el trafico, es razonable que la cantidad de información que nos proveen, estén por debajo de la entropía de la fuente.
 
 \FloatBarrier
 \subsubsection{Red Starbucks}
+
+En esta red se observo una menor cantidad de nodos que en la anterior. En esta, hay varias IPs que caen por debajo de la entropía de la fuente, pero sin duda el nodo mas distinguido es 10.251.4.1
 
 \begin{figure}[h!]
   \begin{center}
@@ -68,12 +74,14 @@ Luego, tambien se puede visualizar paquetes ``who-has'' desde la ip 0.0.0.0, en 
   \end{center}
 \end{figure}
 
-% explicacion
+También vemos como efectivamente la IP 169.254.255.255 aparece también como un nodo distinguido de la red, pero por lo que vimos antes, el echo de que no envíe paquetes ``is-at'', y de que termine con 255.255, hace muy probable que esta sea la dirección broadcast de otra Red. Luego también se ve una IP que no pertenece a las 2 redes que mas vemos en el histograma, la IP 200.42.4.203. Esta IP es la de mayor incertidumbre de la red, ya que es la IP con mayor información de la captura, y esto lo hace estar muy por encima de la entropía de la fuente.
 
 \FloatBarrier
 \subsection{Paquetes capturados de cada protocolo}
 
-% explicacion
+El siguiente paso es observar un poco la simulación de la fuente de información que fue provista por la cátedra, y esto es, ver los distintos protocolos que son visibles a través del campo \textit{type} de los paquetes Ethernet.\\
+
+En otras capturas que realizamos se observaron algunos paquetes LLC, pero en las capturas que luego decidimos estudiar, no se observaron paquetes de esta índole, y solo se vieron 3 protocolos: ARP, IPv4 y IPv6. La idea entonces, es mostrar en un gráfico de torta, cual fue la probabilidad de cada símbolo (protocolo) de esta fuente de información.
 
 \FloatBarrier
 \subsubsection{Red Laboral}
@@ -86,7 +94,7 @@ Luego, tambien se puede visualizar paquetes ``who-has'' desde la ip 0.0.0.0, en 
   \end{center}
 \end{figure}
 
-% explicacion
+En la figura \ref{fig:proto-baufest}, se ve como los paquetes ARP casi son un 10\% del total, e incluso es mayor al porcentaje de paquetes IPv6 de la red. Quizá esto sea debido a que el tiempo de expiracion de las entradas de las tablas ARP esten configurados con un tiempo muy chico, o que haya demasiados cambios en la red y esto provoque que los hosts deban continuamente estar averiguando la IP del router o de algún otro host.
 
 \FloatBarrier
 \subsubsection{Red Starbucks}
@@ -99,37 +107,41 @@ Luego, tambien se puede visualizar paquetes ``who-has'' desde la ip 0.0.0.0, en 
   \end{center}
 \end{figure}
 
-% explicacion
+En este caso el porcentaje de paquetes ARP es un poco menor, y aumenta mucho mas el porcentaje de paquetes IPv6.
 
 \FloatBarrier
-\subsection{Variación de la etropía a lo largo del tiempo}
+\subsection{Variación de la entropía a lo largo del tiempo}
 
-% explicacion
+El siguiente análisis es bastante interesante, debido a que nos da una idea de como varía la entropía a lo largo del tiempo, y de que tan grande debe ser una captura para poder saber un valor certero de la entropía de la red. También hay que tener en cuenta que la entropía puede variar a lo largo del dia, ya que el trafico en internet es muy fluctuante, y el movimiento posiblemente no sea el mismo en horas de la madrugada que a las 3 de la tarde.\\
+
+Par realizar este análisis optamos por mostrar un gráfico de lineas en donde se muestra la variación de la entropía en función del tiempo, para ambas fuentes de información. Cabe aclarar que el hecho de mostrarlas en el mismo gráfico es por una cuestión de claridad, y de poder compara el nivel de insertidumbre de una fuente con otra, y ademas el poder comprarlas con respecto a cuanto tardan en converger a un valor estable. \\
+
 
 \FloatBarrier
 \subsubsection{Red Laboral}
+
+Para la red laboral, se puede ver como la entropía para la fuente de información de nodos, se estabiliza luego de pasados los 9 minutos de captura. En cambio la fuente de protocolos, lo hace a los 7 minutos, y alrededor de los 3 minutos presenta una variación muy chica. Esto quiere decir que, los protocolos en si suelen presentar un nivel de incertidumbre muy constante porque ya son algo intrínseco de la red, y no son muy fluctuantes. En cambio, en cuanto a los nodos, al ser una red wifi donde suele haber mucho movimiento de notebooks y de otros dispositivos, la fluctuación es mayor, y esto hace la entropía tarde mas en converger.
 
 \begin{figure}[h!]
   \begin{center}
     \includegraphics{graficos/entropia-tiempo-bf.pdf}
 	\caption{}
-    \label{fig:proto-baufest}  
+    \label{fig:entropy-baufest}  
   \end{center}
 \end{figure}
 
-% explicacion
-
 \FloatBarrier
 \subsubsection{Red Starbucks}
+
+En esta red, pasa algo parecido que en la red anterior, ya que la fuente de información de nodos tarda mucho mas en converger que la de protocolos, pero acá es mucho mas notable como la fluctuación de los nodos hace que varíe mucho la entropía de los nodos a medida que pasa el tiempo, ya que esta comienza siendo de 2.75 bits, y termina siendo de 4.25. En cambio en la entropía de la fuente de información de protocolos, esto es mucho menor, y casi es constante desde el comienzo de la captura. \\
+
+También se puede ver como en general, en ambas redes la entropía, osea, el nivel de incertidumbre de la fuente, es bastante mayor en cuanto a nodos que en cuanto a protocolos. Esto también es por lo dicho anteriormente, de que los protocolos ya son algo intrínseco de las redes, y no hay tanta incertidumbre con respecto a eso, pero si la hay en cuanto a los nodos que se conectan a la misma.
 
 \begin{figure}[h!]
   \begin{center}
     \includegraphics{graficos/entropia-tiempo-starbucks.pdf}
 	\caption{}
-    \label{fig:proto-starbucks}  
+    \label{fig:entropy-starbucks}  
   \end{center}
 \end{figure}
-
-% explicacion
-
 

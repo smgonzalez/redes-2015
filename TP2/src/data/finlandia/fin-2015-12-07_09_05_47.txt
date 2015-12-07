@@ -1,0 +1,26 @@
+WARNING: No route found for IPv6 destination :: (no default route?). This affects only IPv6
+/usr/lib/python3.5/site-packages/scipy/stats/stats.py:1285: UserWarning: kurtosistest only valid for n>=20 ... continuing anyway, n=14
+  "anyway, n=%i" % int(n))
+TTL	IP	Intentos	RTT Promedio	Desvio Standard	Delta RTT
+1:	10.0.0.1	8	54.12ms	10.27ms	54.12ms
+2:	10.24.128.1	10	63.80ms	6.25ms	9.67ms
+3:	181.47.254.85	10	58.50ms	7.88ms	-5.30ms
+4:	195.22.220.93	10	65.80ms	6.32ms	7.30ms
+5:	195.22.220.92	10	63.50ms	5.95ms	-2.30ms
+6:	149.3.183.11	10	272.50ms	11.06ms	209.00ms
+7:	 **** No hubo respuesta ***
+8:	109.105.97.126	10	331.50ms	10.72ms	59.00ms
+9:	109.105.102.102	10	337.90ms	12.92ms	6.40ms
+10:	109.105.102.103	10	329.40ms	6.13ms	-8.50ms
+11:	193.167.253.9	10	332.50ms	5.23ms	3.10ms
+12:	128.214.173.242	10	342.50ms	13.66ms	10.00ms
+13:	128.214.173.10	10	331.90ms	6.66ms	-10.60ms
+14:	128.214.189.85	10	328.20ms	3.65ms	-3.70ms
+15:	128.214.189.90	10	335.80ms	7.16ms	7.60ms
+** NormalTest **
+k2:  28.8935165948  p-valor:  5.31927679618e-07
+** GrubbsTest **
+N:  14
+G:  3.231095126420261
+CriticalValue:  2.5073
+El DeltaRTT  209.0  es el enlace transatlantico
