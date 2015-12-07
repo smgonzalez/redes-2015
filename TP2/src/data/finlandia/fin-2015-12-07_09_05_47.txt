@@ -1,6 +1,3 @@
-WARNING: No route found for IPv6 destination :: (no default route?). This affects only IPv6
-/usr/lib/python3.5/site-packages/scipy/stats/stats.py:1285: UserWarning: kurtosistest only valid for n>=20 ... continuing anyway, n=14
-  "anyway, n=%i" % int(n))
 TTL	IP	Intentos	RTT Promedio	Desvio Standard	Delta RTT
 1:	10.0.0.1	8	54.12ms	10.27ms	54.12ms
 2:	10.24.128.1	10	63.80ms	6.25ms	9.67ms
