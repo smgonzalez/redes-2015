@@ -1,14 +1,15 @@
 #!/usr/bin/python
 
 import math
+import scipy.stats as stats
+import ntpath
 from sys import argv
 from os import listdir
 from tDistribution import tDistribution
 from datetime import datetime
-import ntpath
 
 IGNORE_HEADER = True
-IGNORE_FIRST_DRTT = True
+IGNORE_FIRST_DRTT = False
 
 IP_INDEX = 1
 DRTT_INDEX = 5
@@ -60,9 +61,8 @@ def calculateGrubbsTest(drtts, infile, outfile):
         numbers.append(drtt)
 
     # Normal test
-    #normal = stats.normaltest(numbers)
-    #pValue =  normal[1]
-    pValue = 1.0
+    normal = stats.normaltest(numbers)
+    pValue =  normal[1]
 
     # Test de Grubbs #
     zscores = calculateZScore(numbers)
