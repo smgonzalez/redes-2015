@@ -4,6 +4,8 @@ import math
 from sys import argv
 from os import listdir
 from tDistribution import tDistribution
+from datetime import datetime
+import ntpath
 
 IGNORE_HEADER = True
 
@@ -57,8 +59,11 @@ def parse_file(filename, out_file):
     rejectNumer = calculateRejectNumber(N)
 
     isOutlier = "SI" if float(G) > float(rejectNumer) else "NO"
+    dateStr = ntpath.basename(filename)[4:-4]
+    dateObj = datetime.strptime(dateStr, "%Y-%m-%d_%H_%M_%S")
+    date = dateObj.strftime("%Y-%m-%d %H:%M")
 
-    summarize = "%s\t%s\t%d\t%.2f\t%f\t%.2f\t%.4f\t%s\n" % (ip_edge1, ip_edge2, N, max_drtt, pvalue, G, rejectNumer, isOutlier)
+    summarize = "%s\t%s\t%s\t%d\t%.2f\t%f\t%.2f\t%.4f\t%s\n" % (date, ip_edge1, ip_edge2, N, max_drtt, pvalue, G, rejectNumer, isOutlier)
     out_file.write(summarize)
 
 
@@ -81,7 +86,7 @@ def main():
     file_dir = argv[1]
     
     out_file = open(file_dir+"-sum.txt", 'w')
-    out_file.write("IP_SRC\tIP_DST\tN\tDRTT_MAX\tP_VALOR\tESTADISTICO\tVALOR_CRITICO\tES_OUTLIER?\n")
+    out_file.write("HORA\tIP_SRC\tIP_DST\tN\tDRTT_MAX\tP_VALOR\tESTADISTICO\tVALOR_CRITICO\tES_OUTLIER?\n")
 
     for file in listdir(file_dir):
         if ".txt" in file:
