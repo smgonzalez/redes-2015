@@ -39,34 +39,120 @@ Una cosa a destacar, es la aparicion de varios $\Delta$RTT negativos, incluso ha
 
 \subsubsection{Universidad de Oxford (Inglaterra)}
 
-A diferencia de la la ruta provista en el punto anterior, esta resulto ser bastante mas errática. Para empezar, el enlace que tiene el mayor $\Delta$RTT, tiene ambos extremos en Estados Unidos, uno en Virginia y el otro en Kansas (segun Geo IP Tool y IP Location). Por otro lado, hay otro salto grande que se observa, que es entre el hop 7 y 9, y aquí si ambos extremos estan en distintos continentes. El hop 8, en escasa ejecución realizadas a lo largo del dia obtuvimos algunas respuestas de el, pero las herramientas de geolocalización indicaban que la IP podía estar en Estados Unidos, o en Alemania, lo cual nos dejaba con un grado de incertidumbre bastante grande.\\
+A diferencia de la la ruta vista en el punto anterior, esta resulto tener algunas particularidades. Para empezar, el enlace que tiene el mayor $\Delta$RTT, tiene ambos extremos en Estados Unidos, uno en Virginia y el otro en Kansas (segun Geo IP Tool y IP Location). Por otro lado, hay otro salto grande que se observa, que es entre el hop 7 y 9, y aquí si ambos extremos estan en distintos continentes. Nunca conseguimos que el hop 8 responda el paquete ping, ya que muy probablemente sea un router que descarta los paquetes de tipo ICMP. Esto es un comportamiento bastante habitual que tiene algunos routers.
 
-De todas maneras, segun se ve, el enlace debe estar entre Estados Unidos y Inglaterra, o quiza entre Estados Unidos y Alemania, pero no sabemos certeramente cuales son las IPs de sus extremos.
+De todas maneras, según se ve, el enlace debe estar entre Estados Unidos e Inglaterra. Probando tambien para otras IPs aledaneas a la utilizada, obtuvimos los mismo resultados, por lo que optamos por igual quedarnos con esta.
 
 \begin{table}[H]
 	\centering
-	\caption{Ruta para Universidad de Helsinki}
+	\caption{Ruta para Universidad de Oxford}
 	\label{table:finlandia}
 	\begin{tabular}{|l|l|l|l|l|l|l|}
 		\hline
 		TTL & IP & Intentos & RTT Promedio & Desvio Standard & Delta RTT & Ubicación \\ \hline 
-		1 & 10.0.0.1 & 8 & 55.88ms & 17.37ms & 55.88ms & Router Local (Argentina)  \\ \hline 
-		2 & 10.24.128.1 & 10 & 65.80ms & 6.48ms & 9.92ms & Router Local (Argentina)  \\ \hline 
-		3 & 181.47.254.85 & 10 & 60.90ms & 6.49ms & -4.90ms & Argentina (Bs As) \\ \hline 
-		4 & 208.178.195.214 & 10 & 65.50ms & 6.02ms & 4.60ms & Estados Unidos (Virginia) \\ \hline 
-		5 & 208.178.195.213 & 10 & 60.50ms & 9.51ms & -5.00ms & Estados Unidos (Virginia) \\ \hline 
-		6 & 67.17.75.66 & 10 & 223.20ms & 53.45ms & 162.70ms & Estados Unidos (Kansas) \\ \hline 
-		7 & 4.68.111.121 & 10 & 202.20ms & 16.02ms & -21.00ms & Estados Unidos (Chicago) \\ \hline 
+		1 & 10.0.0.1 & 8 & 55.38ms & 10.89ms & 55.38ms & Router Local (Argentina) \\ \hline 
+		2 & 10.24.128.1 & 10 & 60.00ms & 3.77ms & 4.62ms & Router Local (Argentina) \\ \hline 
+		3 & 181.47.254.85 & 10 & 58.50ms & 5.78ms & -1.50ms & Argentina (Bs As) \\ \hline 
+		4 & 208.178.195.214 & 10 & 65.30ms & 5.85ms & 6.80ms & Estados Unidos (Virginia) \\ \hline 
+		5 & 208.178.195.213 & 10 & 65.10ms & 6.72ms & -0.20ms & Estados Unidos (Virginia) \\ \hline 
+		6 & 67.17.75.66 & 10 & 182.60ms & 14.40ms & 117.50ms & Estados Unidos (Kansas) \\ \hline 
+		7 & 4.68.111.121 & 10 & 188.30ms & 5.23ms & 5.70ms & Estados Unidos (Chicago) \\ \hline 
 		8 & No hubo respuesta & - & - & - & - & - \\ \hline 
-		9 & 212.187.139.166 & 10 & 276.00ms & 7.33ms & -26.43ms & Inglaterra (Londres) \\ \hline 
-		10 & 146.97.33.2 & 10 & 283.70ms & 7.07ms & 7.70ms & Inglaterra (Londres) \\ \hline 
-		11 & 146.97.37.194 & 10 & 293.50ms & 15.26ms & 9.80ms & Inglaterra (Londres) \\ \hline 
-		12 & 193.63.108.94 & 10 & 275.20ms & 4.10ms & -18.30ms & Inglaterra (Gales) \\ \hline 
-		13 & 193.63.108.98 & 10 & 285.00ms & 7.50ms & 9.80ms & Inglaterra (Gales) \\ \hline 
-		14 & 193.63.109.42 & 10 & 294.70ms & 10.61ms & 9.70ms & Inglaterra (Gales) \\ \hline 
-		15 & 192.76.21.71 & 10 & 285.30ms & 4.92ms & -9.40ms & Inglaterra (Oxford) \\ \hline 
-		16 & 192.76.22.200 & 10 & 289.90ms & 6.54ms & 4.60ms & Inglaterra (Oxford) \\ \hline 
-		17 & 192.76.32.62 & 10 & 285.90ms & 4.86ms & -4.00ms & Inglaterra (Oxford) \\ \hline 
-		18 & 129.67.242.154 & 10 & 289.50ms & 8.90ms & 3.60ms & Inglaterra (Oxford) \\ \hline 
+		\textbf{9} & \textbf{212.187.139.166} & \textbf{10} & \textbf{273.50ms} & \textbf{7.68ms} & \textbf{85.20ms} & \textbf{Inglaterra (Londres)} \\ \hline 
+		10 & 146.97.33.2 & 10 & 273.10ms & 6.92ms & -0.40ms & Inglaterra (Londres) \\ \hline 
+		11 & 146.97.37.194 & 10 & 276.70ms & 7.89ms & 3.60ms & Inglaterra (Londres) \\ \hline 
+		12 & 193.63.108.94 & 10 & 273.40ms & 4.48ms & -3.30ms & Inglaterra (Gales) \\ \hline 
+		13 & 193.63.108.98 & 10 & 273.90ms & 5.88ms & 0.50ms & Inglaterra (Gales) \\ \hline 
+		14 & 193.63.109.42 & 10 & 271.20ms & 5.51ms & -2.70ms & Inglaterra (Gales) \\ \hline 
+		15 & 192.76.21.71 & 10 & 273.70ms & 5.31ms & 2.50ms & Inglaterra (Oxford) \\ \hline 
+		16 & 192.76.22.200 & 10 & 275.90ms & 5.15ms & 2.20ms & Inglaterra (Oxford) \\ \hline 
+		17 & 192.76.32.62 & 10 & 283.50ms & 37.29ms & 7.60ms & Inglaterra (Oxford) \\ \hline 
+		18 & 129.67.242.154 & 10 & 270.90ms & 4.20ms & -12.60ms & Inglaterra (Oxford) \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsection{Test de Grubbs}
+
+En los resultados que mostramos anteriormente, se vio el $\Delta$RTT del enlace submarino para una sola corrida del \textit{traceroute}, pero esto fue solo para dar un primer vistaso y una primera estimacion sobre donde podria encontrarse el enlace submarino. Lo que ahora queremos mostrar, es el resultado que dio el Test de Grubbs, sobre los enlaces anteriormente encontrados, y ver si efectivamente son outliers, y potenciales enlaces submarinos.\\
+
+ACLARACION: Si bien las tablas no es un buen metodo para presentar datos, en esta ocasión decidimos si utilizarla, ya que se pueden ver todos los valores para todas las corridas del test de Grubbs, esto son, el p-valor del \textit{normaltest}, el estidistico G y el valor para la condicion de rechazo C. \\
+
+Como se puede ver, el test de grubbs indica que los $\Delta$RTT del enlace visto en el punto anterior (desde 195.22.220.92 a 149.3.183.11), son outliers de la muestra. Esto reafirma el hecho de que aqui se encuentre un enlace submarino. Tambien se ve como en 1 solo caso, el test indico que no hay outliers en la muestra, y ademas, el $\Delta$RTT mas grande, no es el enlace visto anteriormente. \\
+
+Si se realiza una mirada mas de cerca sobre los resultados de esta ejecución, se podrá ver como tiene varios $\Delta$RTT muy grandes en comparación a otras ejecuciones. De echo esto hace que el \textit{normaltest} indique que es una distribución normal, pero sin embargo, el test de grubbs indica que el máximo valor no es un outlier. Debido a estas inconsistencias con respecto a las demás ejecuciones, se opto por ignorar esta ejecución, y asumir que fue influenciada por el estado de la red particular de ese momento.
+
+\subsubsection{Universidad de Helsinki (Finlandia)}
+
+\begin{table}[H]
+	\centering
+	\caption{Grubbs para Universidad de Finlandia}
+	\label{table:grubbs-finlandia}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|}
+		\hline
+		HORA & IP Extremo 1 & IP Extremo 2 & DRTT & p-valor & G & C & Es outlier? \\ \hline 
+19:57 & 128.214.173.10 & 128.214.189.85 & 333.70 & 0.588223 & 1.54 & 15.895 & NO \\ \hline
+20:30 & 195.22.220.92 & 149.3.183.11 & 212.10 & 0.000000 & 3.25 & 15.895 & SI \\ \hline
+20:30 & 195.22.220.92 & 149.3.183.11 & 209.70 & 0.000000 & 3.25 & 15.895 & SI \\ \hline
+21:01 & 195.22.220.92 & 149.3.183.11 & 216.70 & 0.000000 & 3.26 & 15.895 & SI \\ \hline
+21:33 & 195.22.220.92 & 149.3.183.11 & 214.30 & 0.000001 & 3.22 & 15.895 & SI \\ \hline
+22:05 & 195.22.220.92 & 149.3.183.11 & 207.10 & 0.000001 & 3.20 & 15.895 & SI \\ \hline
+22:36 & 195.22.220.92 & 149.3.183.11 & 207.60 & 0.000001 & 3.23 & 15.895 & SI \\ \hline
+23:08 & 195.22.220.92 & 149.3.183.11 & 210.00 & 0.000001 & 3.21 & 15.895 & SI \\ \hline
+23:39 & 195.22.220.92 & 149.3.183.11 & 207.70 & 0.000001 & 3.23 & 15.895 & SI \\ \hline
+00:11 & 195.22.220.92 & 149.3.183.11 & 210.60 & 0.000000 & 3.25 & 15.895 & SI \\ \hline
+00:42 & 195.22.220.92 & 149.3.183.11 & 213.30 & 0.000000 & 3.24 & 15.895 & SI \\ \hline
+01:13 & 195.22.220.92 & 149.3.183.11 & 208.39 & 0.000000 & 3.25 & 15.895 & SI \\ \hline
+01:45 & 195.22.220.92 & 149.3.183.11 & 210.00 & 0.000001 & 3.24 & 15.895 & SI \\ \hline
+02:48 & 195.22.220.92 & 149.3.183.11 & 206.20 & 0.000001 & 3.22 & 15.895 & SI \\ \hline
+03:19 & 195.22.220.92 & 149.3.183.11 & 210.70 & 0.000001 & 3.22 & 15.895 & SI \\ \hline
+03:51 & 195.22.220.92 & 149.3.183.11 & 206.30 & 0.000000 & 3.25 & 15.895 & SI \\ \hline
+04:22 & 195.22.220.92 & 149.3.183.11 & 206.30 & 0.000001 & 3.21 & 15.895 & SI \\ \hline
+04:54 & 195.22.220.92 & 149.3.183.11 & 209.70 & 0.000000 & 3.25 & 15.895 & SI \\ \hline
+05:25 & 195.22.220.92 & 149.3.183.11 & 209.70 & 0.000001 & 3.23 & 15.895 & SI \\ \hline
+05:57 & 195.22.220.92 & 149.3.183.11 & 211.00 & 0.000000 & 3.24 & 15.895 & SI \\ \hline
+06:28 & 195.22.220.92 & 149.3.183.11 & 205.90 & 0.000000 & 3.24 & 15.895 & SI \\ \hline
+07:00 & 195.22.220.92 & 149.3.183.11 & 205.30 & 0.000000 & 3.23 & 15.895 & SI \\ \hline
+07:31 & 195.22.220.92 & 149.3.183.11 & 214.00 & 0.000000 & 3.24 & 15.895 & SI \\ \hline
+08:02 & 195.22.220.92 & 149.3.183.11 & 227.70 & 0.000000 & 3.25 & 15.895 & SI \\ \hline
+08:34 & 195.22.220.92 & 149.3.183.11 & 205.70 & 0.000001 & 3.23 & 15.895 & SI \\ \hline
+09:05 & 195.22.220.92 & 149.3.183.11 & 209.00 & 0.000001 & 3.23 & 15.895 & SI \\ \hline
+09:37 & 195.22.220.92 & 149.3.183.11 & 217.70 & 0.000002 & 3.17 & 15.895 & SI \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsubsection{Universidad de Oxford (Inglaterra)}
+
+En este caso, el test de Grubbs dio que el enlace con mayor $\Delta$RTT era un outlier, pero como vimos con las herramientas de geolicalizacion de IPs, este enlace probablemente no sea un enlace submarino. Debido a esto, optamos por volver a ejecutar el test de Grubbs, pero esta vez quitando este outlier, para tratar de identificar la presencia de un segundo outlier, y asi si ver si segun el test, el enlace que nosotros creemos que es el enlace submarino, es tambien un outlier segun el test de Grubbs. Los resultados pueden verse en la tabla \ref{table:grubbs-inglaterra}
+
+\begin{table}[H]
+	\centering
+	\caption{Grubbs para Universidad de Finlandia}
+	\label{table:grubbs-inglaterra}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|}
+		\hline
+		HORA & IP Extremo 1 & IP Extremo 2 & DRTT & p-valor & G & C & Es outlier? \\ \hline
+		20:31 & 4.68.111.121 & 212.187.139.166 & 86.90 & 0.100648 & 2.48 & 15.971 & SI \\ \hline
+		21:02 & 4.68.111.121 & 212.187.139.166 & 91.40 & 0.000021 & 3.02 & 15.971 & SI \\ \hline
+		21:34 & 4.68.111.121 & 212.187.139.166 & 80.90 & 0.000311 & 2.85 & 15.971 & SI \\ \hline
+		22:05 & 4.68.111.121 & 212.187.139.166 & 73.80 & 0.001433 & 2.69 & 15.971 & SI \\ \hline
+		22:37 & 4.68.111.121 & 212.187.139.166 & 85.00 & 0.000052 & 2.95 & 15.971 & SI \\ \hline
+		23:09 & 4.68.111.121 & 212.187.139.166 & 92.70 & 0.000007 & 3.12 & 15.971 & SI \\ \hline
+		23:40 & 4.68.111.121 & 212.187.139.166 & 85.10 & 0.000090 & 2.92 & 15.971 & SI \\ \hline
+		00:43 & 4.68.111.121 & 212.187.139.166 & 86.00 & 0.000011 & 3.01 & 15.971 & SI \\ \hline
+		01:14 & 4.68.111.121 & 212.187.139.166 & 83.10 & 0.000012 & 3.02 & 15.971 & SI \\ \hline
+		01:46 & 4.68.111.121 & 212.187.139.166 & 88.20 & 0.000008 & 3.08 & 15.971 & SI \\ \hline
+		02:17 & 4.68.111.121 & 212.187.139.166 & 82.30 & 0.000008 & 3.03 & 15.971 & SI \\ \hline
+		02:49 & 4.68.111.121 & 212.187.139.166 & 80.30 & 0.000110 & 2.89 & 15.971 & SI \\ \hline
+		03:20 & 4.68.111.121 & 212.187.139.166 & 81.40 & 0.000015 & 2.99 & 15.971 & SI \\ \hline
+		03:52 & 4.68.111.121 & 212.187.139.166 & 81.57 & 0.000021 & 3.00 & 15.971 & SI \\ \hline
+		04:23 & 4.68.111.121 & 212.187.139.166 & 88.70 & 0.000120 & 2.92 & 15.971 & SI \\ \hline
+		04:55 & 4.68.111.121 & 212.187.139.166 & 82.30 & 0.000048 & 2.96 & 15.971 & SI \\ \hline
+		05:26 & 4.68.111.121 & 212.187.139.166 & 85.20 & 0.000011 & 3.05 & 15.971 & SI \\ \hline
+		05:58 & 4.68.111.121 & 212.187.139.166 & 84.70 & 0.000014 & 3.00 & 15.971 & SI \\ \hline
+		06:29 & 4.68.111.121 & 212.187.139.166 & 84.30 & 0.000019 & 2.99 & 15.971 & SI \\ \hline
+		08:03 & 4.68.111.121 & 212.187.139.166 & 108.10 & 0.000178 & 2.97 & 15.971 & SI \\ \hline
+		08:34 & 193.63.108.98 & 193.63.109.42 & 141.50 & 0.042960 & 2.28 & 15.971 & SI \\ \hline
+		09:06 & 4.68.111.121 & 212.187.139.166 & 87.30 & 0.000010 & 3.04 & 15.971 & SI \\ \hline
+		09:38 & 4.68.111.121 & 212.187.139.166 & 85.30 & 0.000018 & 2.98 & 15.971 & SI \\ \hline
 	\end{tabular}
 \end{table}
