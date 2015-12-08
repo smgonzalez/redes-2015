@@ -19,15 +19,31 @@ Cabe aclarar que este método igual tiene una falla, y es que si al momento de c
 
 Para poder identificar enlaces submarinos, nos basamos en un teste denominado ``Test de Grubbs'', el cual sirve para detectar outliers en una muestra aleatoria. En nuestro caso, la muestra aleatoria seran los $\Delta$RTT obtenidos en todo el traceroute, y el outlier que queremos encontrar, sera justamente el del enlace submarino, ya que estimamos que este enlace debe tener un RTT mucho mayor a cualquier enlace que se encuentre en tierra.\\ 
 
-Para realizar el test de Grubbs, es necesario que la muestra aleatoria sea de distribucion normal, pero de todas maneras, la cátedra indico que igual usemos el test si la distribucion de los $\Delta$RTT no nos queda normal. Ahora para verificar si la distribución de nuestras muestras es normal, utilizaremos el modulo Scipy de Python, el cual permite hacer análisis estadísticos. El test de Grubbs consiste en lo siguiente, dada una muestra \textit{X} de tamaño \textit{n}:
+Para realizar el test de Grubbs, es necesario que la muestra aleatoria sea de distribucion normal, pero de todas maneras, la cátedra indico que igual usemos el test si la distribucion de los $\Delta$RTT no nos queda normal. Ahora para verificar si la distribución de nuestras muestras es normal, utilizaremos el modulo Scipy de Python, el cual permite hacer análisis estadísticos. El test de Grubbs consiste en lo siguiente, dada una muestra \textit{X} de tamaño \textit{N}:
 
 \begin{enumerate}
 	\item Se calcula el promedio muestral de \textit{X}: $\mu$
 	\item Se calcula la desviacion standard de \textit{X}: $\sigma$
 	\item Se calcula el estadistico del test: $G = (max(X) - \mu) / \sigma$
-	\item Se obtiene el valor critico del test: \textit{C} (Este valor esta tabulado para cada \textit{n})
+	\item Se calcula el valor de rechazo del test: : $C = \frac{n-1}{\sqrt{N}} * \sqrt{\frac{t_{\alpha/N,N-2}^2}{N-2+t_{\alpha/N,N-2}^2}}$
 	\item Si el valor de \textit{G} es mayor a \textit{C}, entonces \textit{max(X)} es un outlier de \textit{X}
 \end{enumerate}
+
+El valor $t_{\alpha/N,N-2}$ hace referencia al valor critico de la distribución \textit{t} para N-2 grados de libertad, y nivel significativo $\alpha$
+
+\subsection{Rutas a explorar}
+
+Teniendo implementadas las herramientas para recopilar la información y realizar los cálculos anteriormente dichos anteriormente, debemos elegir 2 IPs ubicadas en otro continente para poder realizar el \textit{traceroute}. Las IPs elegidas son las siguientes:
+
+\begin{itemize}
+	\item Finlandia: University of Helsinki - \url{www.helsinki.fi}
+	\item Inglaterra: University of Oxford - \url{www.ox.ac.uk}
+\end{itemize}
+
+Una vez corrido el traceroute a estas IPs, tendremos una ruta aproximada hacia las mismas. Cabe aclarar que la herramienta no es exacta, sino que solo es una aproximación de la ruta real, ya que para poder encontrar la ruta exacta con todos los nodos involucrados, es necesario usar técnicas mas complejas.\\
+
+Una ves tengamos encontrada una ruta, lo que hacernos es geolocalizar las IPs de la misma, para poder comparar esto con el resultado que nos devuelva el Test de Grubbs, y asi corroborar que RTT del enlace que vemos como outlier, tenga sus extremos en distintos continentes. Para esto, utilizaremos Geo IP Tool (\url{www.geoiptool.com}), junto con IP Location (\url{www.iplocation.net}), las cuales nos permiten ubicar geográficamente una IP. IP Location, a diferencia de Geo IP Tool, presenta 4 posibles opciones de donde puede estar la IP, sacadas de otras paginas Web.
+
 
 
 

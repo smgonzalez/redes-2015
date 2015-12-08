@@ -1,1 +1,72 @@
 \section{Segunda Consigna: Gráficos y Análisis}
+
+Luego de la breve explicacion de como se han implementado las herramientas a utilizar, y de haber propuesto 2 rutas a analizar, procedemos a mostrar los resultados obtenidos de las mismas. Para poder realizar los siguientes analisis, lo que hicimos fue: Correr la herramienta \textit{traceroute} a lo largo del dia, cada media hora con un script, durante 12 horas.
+
+\subsection{Rutas encontradas}
+
+Primero, vamos a presentar las rutas encontradas para las IPs propuestas. Se presentaran en formato tabla, y se indicara la ubicacion de cada IP segun Geo IP Tool.
+
+\subsubsection{Universidad de Helsinki (Finlandia)}
+
+El siguiente cuadro muestra como el enlace submarino se debería encontrar entre Argentina y Italia. Esta ruta, fue el resultado de 27 corridas de \textit{traceroute} a lo largo del dia, por lo que es lo mas certero que da nuestra herramienta. En la ruta se ve como al llegar al continente europeo, las IPs van saltando entre IPs locales de Suecia y Finlandia, hasta llegar al host destino.\\
+
+Una cosa a destacar, es la aparicion de varios $\Delta$RTT negativos, incluso habiendo promediado los RTT de 10 paquetes distintos, y que ademas como se puede ver, todos fueron exitosos, y solo hubo 1 cambio de IP al inicio del \textit{traceroute}, en donde luego de 8 intentos cambio la IP. Esto muestra como por mas de que se promedien varios RTT, la cercanía de estos nodos, hacen que los RTT varíen mucho. Para eso esta bueno tambien tener el valor del desvió standard de los intentos, asi tenemos una aproximación de entre que valores puede estar verdaderamente el RTT, con alta probabilidad.
+
+\begin{table}[H]
+	\centering
+	\caption{Ruta para Universidad de Helsinki}
+	\label{table:finlandia}
+	\begin{tabular}{|l|l|l|l|l|l|l|}
+		\hline
+		TTL & IP & Intentos & RTT Promedio & Desvio Standard & Delta RTT & Ubicación \\ \hline 
+		1 & 10.0.0.1 & 8 & 59.12ms & 15.03ms & 59.12ms & Router Local (Argentina) \\ \hline 
+		2 & 10.24.128.1 & 10 & 55.40ms & 4.30ms & -3.73ms & Router Local (Argentina) \\ \hline 
+		3 & 181.47.254.85 & 10 & 58.20ms & 6.09ms & 2.80ms & Argentina (Bs As) \\ \hline 
+		4 & 195.22.220.93 & 10 & 60.10ms & 6.01ms & 1.90ms & Argentina (Tigre) \\ \hline 
+		5 & 195.22.220.92 & 10 & 63.11ms & 7.41ms & 3.01ms & Argentina (Tigre) \\ \hline 
+		\textbf{6} & \textbf{149.3.183.11} & \textbf{10} & \textbf{271.50ms} & \textbf{4.70ms} & \textbf{208.39ms} & \textbf{Italia} \\ \hline 
+		7 & No hubo respuesta & - & - & - & - & - \\ \hline 
+		8 & 109.105.97.126 & 10 & 324.10ms & 2.60ms & 52.60ms & Suecia \\ \hline 
+		9 & 109.105.102.102 & 10 & 336.80ms & 8.99ms & 12.70ms & Suecia \\ \hline 
+		10 & 109.105.102.103 & 10 & 333.20ms & 17.01ms & -3.60ms& Suecia \\ \hline 
+		11 & 193.167.253.9 & 10 & 333.80ms & 8.51ms & 0.60ms & Finlandia \\ \hline 
+		12 & 128.214.173.242 & 10 & 336.40ms & 3.44ms & 2.60ms & Finlandia (Helsinki) \\ \hline 
+		13 & 128.214.173.10 & 10 & 333.22ms & 12.11ms & -3.18ms & Finlandia (Helsinki) \\ \hline 
+		14 & 128.214.189.85 & 10 & 328.40ms & 5.15ms & -4.82ms & Finlandia (Helsinki) \\ \hline 
+		15 & 128.214.189.90 & 10 & 337.20ms & 5.81ms & 8.80ms & Finlandia (Helsinki) \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsubsection{Universidad de Oxford (Inglaterra)}
+
+A diferencia de la la ruta provista en el punto anterior, esta resulto ser bastante mas errática. Para empezar, el enlace que tiene el mayor $\Delta$RTT, tiene ambos extremos en Estados Unidos, uno en Virginia y el otro en Kansas (segun Geo IP Tool y IP Location). Por otro lado, hay otro salto grande que se observa, que es entre el hop 7 y 9, y aquí si ambos extremos estan en distintos continentes. El hop 8, en escasa ejecución realizadas a lo largo del dia obtuvimos algunas respuestas de el, pero las herramientas de geolocalización indicaban que la IP podía estar en Estados Unidos, o en Alemania, lo cual nos dejaba con un grado de incertidumbre bastante grande.\\
+
+De todas maneras, segun se ve, el enlace debe estar entre Estados Unidos y Inglaterra, o quiza entre Estados Unidos y Alemania, pero no sabemos certeramente cuales son las IPs de sus extremos.
+
+\begin{table}[H]
+	\centering
+	\caption{Ruta para Universidad de Helsinki}
+	\label{table:finlandia}
+	\begin{tabular}{|l|l|l|l|l|l|l|}
+		\hline
+		TTL & IP & Intentos & RTT Promedio & Desvio Standard & Delta RTT & Ubicación \\ \hline 
+		1 & 10.0.0.1 & 8 & 55.88ms & 17.37ms & 55.88ms & Router Local (Argentina)  \\ \hline 
+		2 & 10.24.128.1 & 10 & 65.80ms & 6.48ms & 9.92ms & Router Local (Argentina)  \\ \hline 
+		3 & 181.47.254.85 & 10 & 60.90ms & 6.49ms & -4.90ms & Argentina (Bs As) \\ \hline 
+		4 & 208.178.195.214 & 10 & 65.50ms & 6.02ms & 4.60ms & Estados Unidos (Virginia) \\ \hline 
+		5 & 208.178.195.213 & 10 & 60.50ms & 9.51ms & -5.00ms & Estados Unidos (Virginia) \\ \hline 
+		6 & 67.17.75.66 & 10 & 223.20ms & 53.45ms & 162.70ms & Estados Unidos (Kansas) \\ \hline 
+		7 & 4.68.111.121 & 10 & 202.20ms & 16.02ms & -21.00ms & Estados Unidos (Chicago) \\ \hline 
+		8 & No hubo respuesta & - & - & - & - & - \\ \hline 
+		9 & 212.187.139.166 & 10 & 276.00ms & 7.33ms & -26.43ms & Inglaterra (Londres) \\ \hline 
+		10 & 146.97.33.2 & 10 & 283.70ms & 7.07ms & 7.70ms & Inglaterra (Londres) \\ \hline 
+		11 & 146.97.37.194 & 10 & 293.50ms & 15.26ms & 9.80ms & Inglaterra (Londres) \\ \hline 
+		12 & 193.63.108.94 & 10 & 275.20ms & 4.10ms & -18.30ms & Inglaterra (Gales) \\ \hline 
+		13 & 193.63.108.98 & 10 & 285.00ms & 7.50ms & 9.80ms & Inglaterra (Gales) \\ \hline 
+		14 & 193.63.109.42 & 10 & 294.70ms & 10.61ms & 9.70ms & Inglaterra (Gales) \\ \hline 
+		15 & 192.76.21.71 & 10 & 285.30ms & 4.92ms & -9.40ms & Inglaterra (Oxford) \\ \hline 
+		16 & 192.76.22.200 & 10 & 289.90ms & 6.54ms & 4.60ms & Inglaterra (Oxford) \\ \hline 
+		17 & 192.76.32.62 & 10 & 285.90ms & 4.86ms & -4.00ms & Inglaterra (Oxford) \\ \hline 
+		18 & 129.67.242.154 & 10 & 289.50ms & 8.90ms & 3.60ms & Inglaterra (Oxford) \\ \hline 
+	\end{tabular}
+\end{table}
