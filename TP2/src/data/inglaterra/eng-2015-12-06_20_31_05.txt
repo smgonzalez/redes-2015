@@ -6,8 +6,8 @@ TTL	IP	Intentos	RTT Promedio	Desvio Standard	Delta RTT
 5:	208.178.195.213	10	64.10ms	6.08ms	-2.30ms
 6:	67.17.75.66	10	188.40ms	4.22ms	124.30ms
 7:	4.68.111.121	10	194.20ms	4.57ms	5.80ms
-8:	4.69.143.190	4	299.50ms	7.05ms	105.30ms
-9:	212.187.139.166	10	281.10ms	8.23ms	-18.40ms
+8:	 **** No hubo respuesta ***
+9:	212.187.139.166	10	281.10ms	8.23ms	86.90ms
 10:	146.97.33.2	10	305.10ms	6.19ms	24.00ms
 11:	146.97.37.194	10	313.80ms	19.26ms	8.70ms
 12:	193.63.108.94	10	276.50ms	16.18ms	-37.30ms
@@ -20,6 +20,6 @@ TTL	IP	Intentos	RTT Promedio	Desvio Standard	Delta RTT
 ** NormalTest **
 k2:  9.35695665233  p-valor:  0.0092931442679
 ** GrubbsTest **
-N:  18
+N:  17
 G:  2.552186193583935
 CriticalValue:  2.6516

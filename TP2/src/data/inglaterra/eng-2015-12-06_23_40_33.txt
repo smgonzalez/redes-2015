@@ -6,8 +6,8 @@ TTL	IP	Intentos	RTT Promedio	Desvio Standard	Delta RTT
 5:	208.178.195.213	10	56.10ms	3.78ms	-10.40ms
 6:	67.17.75.66	10	190.20ms	6.37ms	134.10ms
 7:	4.68.111.121	10	191.40ms	6.74ms	1.20ms
-8:	4.69.143.190	5	296.60ms	6.88ms	105.20ms
-9:	212.187.139.166	10	276.50ms	5.08ms	-20.10ms
+8:	 **** No hubo respuesta ***
+9:	212.187.139.166	10	276.50ms	5.08ms	85.10ms
 10:	146.97.33.2	10	289.10ms	15.98ms	12.60ms
 11:	146.97.37.194	10	288.50ms	7.07ms	-0.60ms
 12:	193.63.108.94	10	274.80ms	4.94ms	-13.70ms
@@ -20,7 +20,7 @@ TTL	IP	Intentos	RTT Promedio	Desvio Standard	Delta RTT
 ** NormalTest **
 k2:  17.7132314341  p-valor:  0.000142436294119
 ** GrubbsTest **
-N:  18
+N:  17
 G:  2.8530110217107496
 CriticalValue:  2.6516
 El DeltaRTT  134.1  es el enlace transatlantico
