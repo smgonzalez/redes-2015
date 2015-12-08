@@ -1,0 +1,124 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	2
+<table>
+finlandia	14	4	07/12/15 23:40
+geometry	24	16	488	220	
+header	IP[X]	RTTPromedio1[Y]	RTTPromedio2[Y]	RTTPromedio3[Y]
+ColWidth	100	100	100	100	
+<com>
+</com>
+ColType	1;0/13	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0	0
+HiddenColumn	0	0	0	0
+Comments	IP	RTT Promedio 1	RTT Promedio 2	RTT Promedio 3	
+WindowLabel	/home/sergio/Redes/TP1/redes-2015/TP2/informe/data/rtts/finlandia.csv	2
+<data>
+0	10.0.0.1	57.75	53.5	54.88
+1	10.24.128.1	61.5	61.5	59.1
+2	181.47.254.85	60.4	60.8	58.9
+3	195.22.220.93	63.8	55.8	65.6
+4	195.22.220.92	57.8	61.8	58.5
+5	149.3.183.11	268.5	268.1	268.2
+6	109.105.97.126	326.5	323.1	325.5
+7	109.105.102.102	338.5	333.5	332.5
+8	109.105.102.103	324.8	325.1	324.8
+9	193.167.253.9	332.1	332.1	329.5
+10	128.214.173.242	339.5	335.8	345.4
+11	128.214.173.10	334.1	335.2	328.1
+12	128.214.189.85	327.1	325.1	326.8
+13	128.214.189.90	337.2	337.5	335.5
+</data>
+</table>
+<multiLayer>
+Graph1	1	1	07/12/15 23:41
+geometry	382	0	675	533	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	6	5	655	469
+<PageGeometry>0.0089955	0.0103093	0.982009	0.96701</PageGeometry>
+PlotTitle	Variación del RTT a lo largo de la ruta, en 3 mediciones distintas <br>para la universidad de Finlandia	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	0	
+AxesTitles	IP	RTT (milisegundos)		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	4
+AxesTitleDistance	2	0	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Cantarell	14	75	0	0	0
+ScaleFont0	Cantarell	12	75	0	0	0
+ScaleFont1	Cantarell	12	75	0	0	0
+ScaleFont2	Cantarell	12	75	0	0	0
+ScaleFont3	Cantarell	12	75	0	0	0
+AxisFont0	Cantarell	12	50	0	0	0
+AxisFont1	Cantarell	12	50	0	0	0
+AxisFont2	Cantarell	9	75	0	0	0
+AxisFont3	Cantarell	12	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#313739	#313739	#313739	#313739
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	finlandia_IP	finlandia_RTTPromedio3	2	1	#000000	0	2	7	1	#000000	#000000	0	#000000	14	1	2	0	0	13	1
+curve	finlandia_IP	finlandia_RTTPromedio2	2	1	#ff0000	0	2	7	1	#ff0000	#ff0000	0	#000000	14	1	2	0	0	13	1
+curve	finlandia_IP	finlandia_RTTPromedio1	2	1	#00ff00	0	2	7	1	#00ff00	#00ff00	0	#000000	14	1	2	0	0	13	1
+scale	0	50	350	0	7	5	0	0
+scale	1	50	350	0	7	5	0	0
+scale	2	0	16	1	17	5	0	0
+scale	3	0	16	1	17	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	1;finlandia_IP	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	45	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>9.6061776061776</x>
+<y>158.39416058394</y>
+<right>15.2895752895753</right>
+<bottom>70.8029197080292</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+\l(3)%(3)
+</Text>
+<Font>Cantarell	12	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>

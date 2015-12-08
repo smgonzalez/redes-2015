@@ -1,7 +1,9 @@
 #!/usr/bin/python
 
+import math
 from sys import argv
 from os import listdir
+from tDistribution import tDistribution
 
 IGNORE_HEADER = True
 
@@ -45,18 +47,34 @@ def parse_file(filename, out_file):
         ip_ant = ip
 
     # NormalTest parse
-    pvalue = next(file).split()[P_VALUE_INDEX]
+    pvalue = float(next(file).split()[P_VALUE_INDEX])
 
     # GrubbsTest parse
     next(file)
-    N = next(file).split()[1]
-    G = next(file).split()[1]
-    C = next(file).split()[1]
+    N = int(next(file).split()[1])
+    G = float(next(file).split()[1])
 
-    isOutlier = "SI" if float(G) > float(C) else "NO"
+    rejectNumer = calculateRejectNumber(N)
 
-    summarize =  ip_edge1 +"\t"+ ip_edge2 +"\t"+ N +"\t"+ str(max_drtt) +"\t"+ pvalue +"\t"+ G +"\t"+ C +"\t"+ isOutlier +"\n"
+    isOutlier = "SI" if float(G) > float(rejectNumer) else "NO"
+
+    summarize = "%s\t%s\t%d\t%.2f\t%f\t%.2f\t%.4f\t%s\n" % (ip_edge1, ip_edge2, N, max_drtt, pvalue, G, rejectNumer, isOutlier)
     out_file.write(summarize)
+
+
+def calculateRejectNumber(N):
+
+    # Se calcula el primer termino del producto
+    p1 = (N-1) / math.sqrt(N) 
+
+    # Se busca el valor critico para la distribucion T con n-2 grados de libertad
+    t = tDistribution[N-2]
+    t2 = math.pow(t, 2)
+
+    # Se calcula el segundo termino del producto
+    p2 = math.sqrt(t2 / (N - 2 + t2))
+
+    return p1 * p2
 
 def main():
 
