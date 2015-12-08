@@ -2,46 +2,45 @@ QtiPlot 0.9.8 project file
 <scripting-lang>	muParser
 <windows>	2
 <table>
-inglaterra	23	2	08/12/15 01:21
-geometry	27	171	445	220	
-header	HORA[X]	DRTT[Y]
-ColWidth	182	100	
+Table2	22	2	08/12/15 18:44
+geometry	40	7	445	220	
+header	HORA[X]	IP-SRCP-VALOR[Y]
+ColWidth	144	100	
 <com>
 </com>
 ColType	2;yyyy-MM-dd HH:mm	0;0/13
 ReadOnlyColumn	0	0
 HiddenColumn	0	0
-Comments	HORA	DRTT	
-WindowLabel	/home/sergio/Redes/TP1/redes-2015/TP2/informe/data/drrt-enlace/inglaterra.csv	2
+Comments	HORA	IP_SRC P_VALOR	
+WindowLabel	/home/sergio/Redes/TP1/redes-2015/TP2/informe/data/drrt-enlace/inglaterra-ignoremax.csv	2
 <data>
-0	2015-12-06 20:31	124.3
-1	2015-12-06 21:02	140.1
-2	2015-12-06 21:34	140.13
-3	2015-12-06 22:05	162.7
-4	2015-12-06 22:37	132.9
-5	2015-12-06 23:09	121.7
-6	2015-12-06 23:40	134.1
-7	2015-12-07 00:43	123.9
-8	2015-12-07 01:14	127.4
-9	2015-12-07 01:46	137.7
-10	2015-12-07 02:17	127.7
-11	2015-12-07 02:49	127.4
-12	2015-12-07 03:20	122.3
-13	2015-12-07 03:52	124.9
-14	2015-12-07 04:23	127.1
-15	2015-12-07 04:55	122.7
-16	2015-12-07 05:26	117.5
-17	2015-12-07 05:58	125
-18	2015-12-07 06:29	120
-19	2015-12-07 08:03	131.3
-20	2015-12-07 08:34	143
-21	2015-12-07 09:06	129.6
-22	2015-12-07 09:38	123.9
+0	2015-12-06 20:31	86.9
+1	2015-12-06 21:02	91.4
+2	2015-12-06 21:34	80.9
+3	2015-12-06 22:05	73.8
+4	2015-12-06 22:37	85
+5	2015-12-06 23:09	92.7
+6	2015-12-06 23:40	85.1
+7	2015-12-07 00:43	86
+8	2015-12-07 01:14	83.1
+9	2015-12-07 01:46	88.2
+10	2015-12-07 02:17	82.3
+11	2015-12-07 02:49	80.3
+12	2015-12-07 03:20	81.4
+13	2015-12-07 03:52	81.57
+14	2015-12-07 04:23	88.7
+15	2015-12-07 04:55	82.3
+16	2015-12-07 05:26	85.2
+17	2015-12-07 05:58	84.7
+18	2015-12-07 06:29	84.3
+19	2015-12-07 08:03	108.1
+20	2015-12-07 09:06	87.3
+21	2015-12-07 09:38	85.3
 </data>
 </table>
 <multiLayer>
-Graph2	1	1	08/12/15 01:30
-geometry	424	14	689	546	active
+Graph1	1	1	08/12/15 18:47
+geometry	398	34	639	557	active
 WindowLabel		2
 Margins	5	5	5	5
 Spacing	5	5
@@ -50,9 +49,9 @@ Alignement	0	0
 <AlignPolicy>0</AlignPolicy>
 <CommonAxes>0</CommonAxes>
 <graph>
-ggeometry	5	5	671	482
-<PageGeometry>0.00734214	0.0100402	0.985316	0.967871</PageGeometry>
-PlotTitle	Varianción del RTT del enlace submarino<br>a lo largo del día (inglaterra)	#000000	4228
+ggeometry	5	6	620	491
+<PageGeometry>0.00792393	0.0117878	0.982567	0.964637</PageGeometry>
+PlotTitle	Variación del RTT del enlace submarino<br>a lo largo del día (inglaterra)	#000000	4228
 <Antialiasing>0</Antialiasing>
 <Autoscaling>1</Autoscaling>
 <ScaleFonts>1</ScaleFonts>
@@ -63,7 +62,7 @@ Margin	0
 Border	0	#000000
 grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
 EnabledAxes	1	1	1	0	
-AxesTitles	Hora del dia	RTT del enlace submarino (ms)		%(?Y)	
+AxesTitles	Hora del día	RTT del enlace submarino (ms)		%(?Y)	
 AxesTitleColors	#000000	#000000	#000000	#000000	
 AxesTitleAlignment	5124	5124	5124	4
 AxesTitleDistance	2	2	2	-1
@@ -73,21 +72,21 @@ ScaleFont0	Cantarell	13	75	0	0	0
 ScaleFont1	Cantarell	13	75	0	0	0
 ScaleFont2	Cantarell	13	75	0	0	0
 ScaleFont3	Cantarell	13	75	0	0	0
-AxisFont0	Cantarell	11	75	0	0	0
-AxisFont1	Cantarell	11	75	0	0	0
-AxisFont2	Cantarell	13	75	0	0	0
+AxisFont0	Cantarell	12	75	0	0	0
+AxisFont1	Cantarell	12	75	0	0	0
+AxisFont2	Cantarell	12	75	0	0	0
 AxisFont3	Cantarell	13	50	0	0	0
 AxesColors	#000000	#000000	#000000	#000000
 AxesNumberColors	#313739	#313739	#313739	#313739
 AxesBaseline	0	0	0	0	
 CanvasBackground	#ffffff	0
-curve	inglaterra_HORA	inglaterra_DRTT	3	1	#000000	0	1	7	0	#000000	#000000	1	#0000ff	0	40	0	2	0	0	22	1
-scale	0	110	170	0	7	5	0	0
-scale	1	110	170	0	7	5	0	0
-scale	2	2457362.82638889	2457363.41666667	0.0416666666666667	15	5	0	0
-scale	3	2457362.82638889	2457363.41666667	0.0416666666666667	15	5	0	0
+curve	Table2_HORA	Table2_IP-SRCP-VALOR	3	1	#000000	0	1	7	0	#000000	#000000	1	#0000ff	0	40	0	2	0	0	21	1
+scale	0	70	110	0	9	5	0	0
+scale	1	70	110	0	9	5	0	0
+scale	2	2457362.83333333	2457363.41666667	0.0416666666666667	15	5	0	0
+scale	3	2457362.83333333	2457363.41666667	0.0416666666666667	15	5	0	0
 LabelsFormat	0	6	0	6	0	6	0	6
-AxisType	0	0	5;HH:mm	0	
+AxisType	0	0	4;hh:mm	0	
 MajorTicks	1	1	1	1
 MinorTicks	1	1	1	1
 TicksLength	5	9
