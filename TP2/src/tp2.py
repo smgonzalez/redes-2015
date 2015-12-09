@@ -2,7 +2,7 @@ from scapy.all import *
 import time
 import sys
 import scipy.stats as stats
-from grubbsCriticalValues import criticalValues
+from tDistribution import tDistribution
 
 #traceroute sobre ICMP
 
@@ -194,12 +194,12 @@ def main(argv=sys.argv):
     # Estadistico
     G = (max(drtts) - sampleMean) / standarDeviation
 
-    criticalValue = criticalValues[N]
+    criticalValue = tDistribution[N]
 
     print("** GrubbsTest **")
     print("N: ", N)
     print("G: ", G)
-    print("CriticalValue: ", criticalValue) # Puede ser None si el N no esta definido en el archivo de valores criticos
+    print("CriticalValue: ", criticalValue)
 
     if criticalValue != None and G > criticalValue:
         print("El DeltaRTT ", max(drtts), " es el enlace transatlantico")

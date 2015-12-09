@@ -6,11 +6,11 @@ Para esto, es necesario implementar una herramienta \textit{traceroute} basada e
 
 \begin{itemize}
 	\item \textit{\textbf{echo-request}}: Paquete utilizado en la herramienta \textit{ping}. Este sirve para saber si un host se encuentra disponible o no. De estar disponible, el host receptor responde con un \textit{echo-reply}.
-	\item \textit{\textbf{echo-reply}}: Respuesta al envio del tipo de paquete anterior. Cuando un host recibe un paquete de tipo \textit{echo-request}, este envia (de tenerlo habilitado) un paquete de este tipo.
-	\item \textit{\textbf{time-exceeded}}: Los paquetes ICMP poseen un campo llamado TTL (time to live), el cual indica el tiempo de vida del paquete. Entonces, por ejemplo, si se envia un \textit{echo-request} con un TTL de 3, luego de los 3 saltos de router, este paquete es descartado, y se envía un paquete de tipo \textit{time-exceeded} al nodo que envió el paquete original.
+	\item \textit{\textbf{echo-reply}}: Respuesta al envió del tipo de paquete anterior. Cuando un host recibe un paquete de tipo \textit{echo-request}, este envía (de tenerlo habilitado) un paquete de este tipo.
+	\item \textit{\textbf{time-exceeded}}: Los paquetes ICMP poseen un campo llamado TTL (time to live), el cual indica el tiempo de vida del paquete. Entonces, por ejemplo, si se envía un \textit{echo-request} con un TTL de 3, luego de los 3 saltos de router, este paquete es descartado, y se envía un paquete de tipo \textit{time-exceeded} al nodo que envió el paquete original.
 \end{itemize}
 
-Utilizando esta ultima propiedad de los paquetes ICMP, podemos implementar una herramienta que, envíe paquetes \textit{echo-request} incrementando de a poco el TTL (inicialmente con 1), y quedarnos con las IPs origen de los paquetes \textit{time-exceeded}, asi poder averiguar la IP de cada salto que realiza el paquete al momento de ser enviado. Esto se realiza hasta que se obtiene un paquete de tipo \textit{echo-reply}.\\
+Utilizando esta ultima propiedad de los paquetes ICMP, podemos implementar una herramienta que, envíe paquetes \textit{echo-request} incrementando de a poco el TTL (inicialmente con 1), y quedarnos con las IPs origen de los paquetes \textit{time-exceeded}. De esta manera podemos averiguar la IP de cada salto que realiza el paquete al momento de ser enviado. Esto se realiza hasta que se obtiene un paquete de tipo \textit{echo-reply}.\\
 
 También se deben poder obtener los $\Delta$RTT entre cada hop de la ruta, para poder realizar un test de Grubbs, y encontrar posibles outliers, los cuales son potenciales enlaces submarinos. Para realizar esto, lo que se hace es acumular los RTT de cada respuesta de tipo \textit{time-exceeded}, y luego:
 
@@ -18,7 +18,7 @@ También se deben poder obtener los $\Delta$RTT entre cada hop de la ruta, para 
 	$\Delta RTT_i = RTT_i - RTT_{i-1} $
 \end{center}
 
-En la etapa de análisis, una ves ya teniendo las la información necesaria, se hara un análisis sobre la posible ubicación de los nodos que se encuentran entrelazados por un enlace submarino. Para esto se utilizara la herramienta Geoiptool \footnote{\url{www.geoiptool.com/es/}} con la que se puede geolocalizar una IP.\\
+En la etapa de análisis, una ves ya teniendo las la información necesaria, se hará un análisis sobre la posible ubicación de los nodos que se encuentran entrelazados por un enlace submarino. Para esto se utilizarar las herramientas Geo IP Tool \footnote{\url{www.geoiptool.com/es/}} y IP Location \footnote{\url{www.iplocation.net}} con las que se puede geolocalizar una IP.\\
 
-Luego se realizar un análisis sobre la variación del RTT del enlace submarino, a lo largo del día. Para esto, se realizara un script que corra el traceroute cada 30 minutos, y asi poder realizar un monitoreo sobre la ruta.
+Luego se realizara un análisis sobre la variación del RTT del enlace submarino, a lo largo del día. Para esto, se realizara un script que corra el traceroute cada 30 minutos, y así poder realizar un monitoreo sobre la ruta.
 
