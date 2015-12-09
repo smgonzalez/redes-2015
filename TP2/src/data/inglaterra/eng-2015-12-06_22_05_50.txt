@@ -17,10 +17,3 @@ TTL	IP	Intentos	RTT Promedio	Desvio Standard	Delta RTT
 16:	192.76.22.200	10	289.90ms	6.54ms	4.60ms
 17:	192.76.32.62	10	285.90ms	4.86ms	-4.00ms
 18:	129.67.242.154	10	289.50ms	8.90ms	3.60ms
-** NormalTest **
-k2:  21.6128329532  p-valor:  2.0269029514e-05
-** GrubbsTest **
-N:  17
-G:  3.138071109086894
-CriticalValue:  2.6516
-El DeltaRTT  162.7  es el enlace transatlantico
